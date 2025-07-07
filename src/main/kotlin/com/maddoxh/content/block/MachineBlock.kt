@@ -2,6 +2,7 @@ package com.maddoxh.content.block
 
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
+import net.minecraft.block.BlockWithEntity
 import net.minecraft.block.HorizontalFacingBlock
 import net.minecraft.item.ItemPlacementContext
 import net.minecraft.state.StateManager
@@ -14,7 +15,7 @@ import net.minecraft.util.math.Direction
  *
  * @param settings The settings for the block
  */
-abstract class MachineBlock(settings: Settings) : Block(settings) {
+abstract class MachineBlock(settings: Settings) : BlockWithEntity(settings) {
     companion object {
         val FACING: DirectionProperty = HorizontalFacingBlock.FACING
     }
