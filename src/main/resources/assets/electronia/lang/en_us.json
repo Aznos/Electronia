@@ -1,5 +1,7 @@
 {
   "block.electronia.hand_crank_generator": "Hand-Crank Generator",
 
+  "item.electronia.crank": "Crank",
+
   "itemGroup.electronia": "Electronia"
 }
