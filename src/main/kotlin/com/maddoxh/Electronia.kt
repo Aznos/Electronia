@@ -1,12 +1,14 @@
 package com.maddoxh
 
+import com.maddoxh.registry.ModBlocks
 import net.fabricmc.api.ModInitializer
 import org.slf4j.LoggerFactory
 
 object Electronia : ModInitializer {
-    private val logger = LoggerFactory.getLogger("electronia")
+	const val MOD_ID = "electronia"
+    private val logger = LoggerFactory.getLogger(MOD_ID)
 
 	override fun onInitialize() {
-		logger.info("Hello Fabric world!")
+		ModBlocks.register()
 	}
 }
