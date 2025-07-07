@@ -6,6 +6,7 @@ import com.mojang.serialization.MapCodec
 import net.minecraft.block.BlockRenderType
 import net.minecraft.block.BlockState
 import net.minecraft.block.BlockWithEntity
+import net.minecraft.block.ShapeContext
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.sound.SoundCategory
@@ -15,6 +16,8 @@ import net.minecraft.util.ActionResult
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
+import net.minecraft.util.shape.VoxelShape
+import net.minecraft.world.BlockView
 import net.minecraft.world.World
 import net.minecraft.world.WorldAccess
 
@@ -31,6 +34,15 @@ class HandCrankGenerator(settings: Settings) : MachineBlock(settings) {
     }
 
     override fun getCodec(): MapCodec<out BlockWithEntity> = CODEC
+
+    override fun getOutlineShape(
+        state: BlockState,
+        world: BlockView,
+        pos: BlockPos,
+        context: ShapeContext
+    ): VoxelShape {
+        return createCuboidShape(-4.0, 0.0, -4.0, 20.0, 28.0, 20.0)
+    }
 
     override fun getStateForNeighborUpdate(
         state: BlockState,
