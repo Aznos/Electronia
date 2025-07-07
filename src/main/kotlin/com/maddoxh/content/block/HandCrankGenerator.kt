@@ -51,11 +51,7 @@ class HandCrankGenerator(settings: Settings) : MachineBlock(settings) {
     ): ActionResult {
         if(!world.isClient) {
             val be = world.getBlockEntity(pos) as? HandCrankGeneratorBlockEntity ?: return ActionResult.PASS
-            if(be.crank()) {
-                player.sendMessage(Text.literal("Cranked! Current stored EU: ${be.getStored()}"), true)
-            } else {
-                player.sendMessage(Text.literal("Generator is full! Current stored EU: ${be.getStored()}"), true)
-            }
+            player.sendMessage(Text.literal(be.crank()), true)
         }
 
         return ActionResult.SUCCESS

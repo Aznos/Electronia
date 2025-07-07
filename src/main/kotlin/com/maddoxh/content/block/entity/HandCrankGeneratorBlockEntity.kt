@@ -13,18 +13,18 @@ class HandCrankGeneratorBlockEntity(pos: BlockPos, state: BlockState) : BlockEnt
     private val capacity: Long = 250
     private var lastCrankTime: Long = 0
 
-    fun crank(): Boolean {
+    fun crank(): String {
         val now = System.currentTimeMillis()
-        if(now - lastCrankTime < 2000) return false
+        if(now - lastCrankTime < 2000) return "Generator is still cranking! Please wait."
 
         if(storedEu + 25 <= capacity) {
             storedEu += 25
             lastCrankTime = now
             markDirty()
-            return true
+            return "Generator is full! Current stored EU: ${getStored()}"
         }
 
-        return false
+        return "Cranked! Current stored EU: ${getStored()}"
     }
 
     override fun writeNbt(nbt: NbtCompound, registryLookup: RegistryWrapper.WrapperLookup) {
