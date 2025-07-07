@@ -1,5 +1,6 @@
 package com.maddoxh
 
+import com.maddoxh.registry.ModBlockEntities
 import com.maddoxh.registry.ModBlocks
 import com.maddoxh.registry.ModItemGroups
 import net.fabricmc.api.ModInitializer
@@ -12,5 +13,6 @@ object Electronia : ModInitializer {
 	override fun onInitialize() {
 		ModItemGroups.register()
 		ModBlocks.register()
+		ModBlockEntities.register()
 	}
 }
