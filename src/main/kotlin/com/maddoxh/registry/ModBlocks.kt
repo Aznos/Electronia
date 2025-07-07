@@ -27,6 +27,5 @@ object ModBlocks {
 
         Registry.register(Registries.BLOCK, id, block)
         Registry.register(Registries.ITEM, id, BlockItem(block, Item.Settings()))
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register { it.add(block) }
     }
 }
