@@ -1,0 +1,11 @@
+{
+  "block.crank": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "electronia:block/crank",
+        "stream": false
+      }
+    ]
+  }
+}

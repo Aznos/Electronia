@@ -1,12 +1,15 @@
 package com.maddoxh.content.block
 
 import com.maddoxh.content.block.entity.HandCrankGeneratorBlockEntity
+import com.maddoxh.registry.ModSounds
 import com.mojang.serialization.MapCodec
 import net.minecraft.block.BlockRenderType
 import net.minecraft.block.BlockState
 import net.minecraft.block.BlockWithEntity
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.entity.player.PlayerEntity
+import net.minecraft.sound.SoundCategory
+import net.minecraft.sound.SoundEvents
 import net.minecraft.text.Text
 import net.minecraft.util.ActionResult
 import net.minecraft.util.hit.BlockHitResult
@@ -51,7 +54,7 @@ class HandCrankGenerator(settings: Settings) : MachineBlock(settings) {
     ): ActionResult {
         if(!world.isClient) {
             val be = world.getBlockEntity(pos) as? HandCrankGeneratorBlockEntity ?: return ActionResult.PASS
-            player.sendMessage(Text.literal(be.crank()), true)
+            player.sendMessage(Text.literal(be.crank(world)), true)
         }
 
         return ActionResult.SUCCESS
