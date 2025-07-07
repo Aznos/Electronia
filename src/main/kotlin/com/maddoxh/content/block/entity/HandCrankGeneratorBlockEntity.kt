@@ -24,21 +24,21 @@ class HandCrankGeneratorBlockEntity(pos: BlockPos, state: BlockState) : BlockEnt
             return "Generator is still cranking! Please wait."
         }
 
-        if(storedEu + 25 <= capacity) {
-            storedEu += 25
-            lastCrankTime = now
+        if(storedEu >= capacity) {
             world.playSound(null, pos, SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 1.0f, 1.0f)
-            markDirty()
-
-            return "Generator is full! Current stored EU: ${getStored()}"
+            return "Generator is full! Current stored EU: $storedEu"
         }
 
+        storedEu += 10
+        lastCrankTime = now
+        markDirty()
+
         world.playSound(null, pos, ModSounds.CRANK, SoundCategory.BLOCKS, 1.0f, 1.0f)
-        return "Cranked! Current stored EU: ${getStored()}"
+        return "Cranked! Current stored EU: $storedEu"
     }
 
     override fun writeNbt(nbt: NbtCompound, registryLookup: RegistryWrapper.WrapperLookup) {
-        nbt.putLong("StoredEu", storedEu)
+        nbt.putLong("StoredEU", storedEu)
         super.writeNbt(nbt, registryLookup)
     }
 
