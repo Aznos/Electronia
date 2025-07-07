@@ -7,6 +7,6 @@ object Electronia : ModInitializer {
     private val logger = LoggerFactory.getLogger("electronia")
 
 	override fun onInitialize() {
-		logger.info("Time to get electronical!")
+		logger.info("Hello Fabric world!")
 	}
 }
