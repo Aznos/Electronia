@@ -1,6 +1,7 @@
 package com.maddoxh.registry
 
 import com.maddoxh.Electronia
+import com.maddoxh.content.block.CrankPress
 import com.maddoxh.content.block.HandCrankGenerator
 import net.minecraft.block.AbstractBlock
 import net.minecraft.block.Block
@@ -16,7 +17,7 @@ object ModBlocks {
         AbstractBlock.Settings.copy(Blocks.IRON_BLOCK)
     )
 
-    val CRANK_PRESS = Block(
+    val CRANK_PRESS = CrankPress(
         AbstractBlock.Settings.copy(Blocks.IRON_BLOCK)
     )
 
