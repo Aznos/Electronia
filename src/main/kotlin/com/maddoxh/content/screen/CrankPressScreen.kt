@@ -10,7 +10,7 @@ import net.minecraft.text.Text
 import net.minecraft.util.Identifier
 
 class CrankPressScreen(handler: CrankPressScreenHandler, inventory: PlayerInventory, text: Text) : HandledScreen<CrankPressScreenHandler>(handler, inventory, text) {
-    val texture: Identifier = Identifier.of(Electronia.MOD_ID, "texutres/gui/crank_press/screen.png")
+    val texture: Identifier = Identifier.of(Electronia.MOD_ID, "textures/gui/crank_press/screen.png")
 
     override fun init() {
         super.init()
