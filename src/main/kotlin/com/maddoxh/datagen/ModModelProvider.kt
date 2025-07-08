@@ -14,5 +14,6 @@ class ModModelProvider(output: FabricDataOutput) : FabricModelProvider(output) {
 
     override fun generateItemModels(generator: ItemModelGenerator) {
         generator.register(ModItems.CRANK, Models.GENERATED)
+        generator.register(ModItems.COPPER_WIRES, Models.GENERATED)
     }
 }
