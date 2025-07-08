@@ -7,6 +7,8 @@ import net.minecraft.client.render.block.entity.BlockEntityRenderer
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory
 import net.minecraft.client.render.model.json.ModelTransformationMode
 import net.minecraft.client.util.math.MatrixStack
+import net.minecraft.state.property.Properties
+import net.minecraft.util.math.Direction
 import net.minecraft.util.math.RotationAxis
 
 class CrankPressBlockEntityRenderer(dispatcher: BlockEntityRendererFactory.Context) : BlockEntityRenderer<CrankPressBlockEntity> {
@@ -21,10 +23,28 @@ class CrankPressBlockEntityRenderer(dispatcher: BlockEntityRendererFactory.Conte
         val stack = entity.getStack(0)
         if(stack.isEmpty) return
 
+        val state = entity.world?.getBlockState(entity.pos) ?: return
+        val facing = state.get(Properties.HORIZONTAL_FACING)
+
+        val yaw = when(facing) {
+            Direction.NORTH -> 180f
+            Direction.SOUTH ->   0f
+            Direction.WEST  ->  90f
+            Direction.EAST  -> -90f
+            else            ->   0f
+        }
+
         matrices.push()
-        matrices.translate(0.685, 0.75, 0.5)
+        matrices.translate(0.5, 0.75, 0.5)
+        matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(yaw))
+
+        if(facing == Direction.NORTH || facing == Direction.SOUTH) {
+            matrices.translate(0.0, 0.0, 0.2)
+        } else {
+            matrices.translate(0.0, 0.0, -0.2)
+        }
+
         matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90f))
-        matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(90f))
         matrices.scale(0.5f, 0.5f, 0.5f)
 
         MinecraftClient.getInstance().itemRenderer.renderItem(
