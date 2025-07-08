@@ -25,7 +25,7 @@ import net.minecraft.util.math.BlockPos
 
 class CrankPressBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(ModBlockEntities.CRANK_PRESS, pos, state), Inventory, ExtendedScreenHandlerFactory<BlockPos> {
     private var lastCrankTime: Long = 0
-    private val inv = DefaultedList.ofSize(1, ItemStack.EMPTY)
+    val inv: DefaultedList<ItemStack> = DefaultedList.ofSize(1, ItemStack.EMPTY)
 
     fun crank(): Boolean {
         return false

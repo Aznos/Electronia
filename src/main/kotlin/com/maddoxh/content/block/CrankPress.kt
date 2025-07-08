@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.util.ActionResult
 import net.minecraft.util.Hand
 import net.minecraft.util.ItemActionResult
+import net.minecraft.util.ItemScatterer
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
@@ -100,5 +101,23 @@ class CrankPress(settings: Settings): MachineBlock(settings) {
         }
 
         return true
+    }
+
+    override fun onStateReplaced(
+        state: BlockState,
+        world: World,
+        pos: BlockPos,
+        newState: BlockState,
+        moved: Boolean
+    ) {
+        if(state.block != newState.block) {
+            (world.getBlockEntity(pos) as? CrankPressBlockEntity)?.let { be ->
+                ItemScatterer.spawn(world, pos, be.inv)
+            }
+
+            world.removeBlockEntity(pos)
+        }
+
+        super.onStateReplaced(state, world, pos, newState, moved)
     }
 }

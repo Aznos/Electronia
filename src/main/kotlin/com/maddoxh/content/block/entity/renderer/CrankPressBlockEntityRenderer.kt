@@ -1,5 +1,6 @@
 package com.maddoxh.content.block.entity.renderer
 
+import com.maddoxh.content.block.CrankPress
 import com.maddoxh.content.block.entity.CrankPressBlockEntity
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.render.VertexConsumerProvider
@@ -23,7 +24,10 @@ class CrankPressBlockEntityRenderer(dispatcher: BlockEntityRendererFactory.Conte
         val stack = entity.getStack(0)
         if(stack.isEmpty) return
 
-        val state = entity.world?.getBlockState(entity.pos) ?: return
+        val world = entity.world ?: return
+        val state = world.getBlockState(entity.pos)
+        if(state.block !is CrankPress) return
+
         val facing = state.get(Properties.HORIZONTAL_FACING)
 
         val yaw = when(facing) {
