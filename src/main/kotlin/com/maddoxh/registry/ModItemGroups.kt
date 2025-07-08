@@ -23,6 +23,7 @@ object ModItemGroups {
         Registry.register(Registries.ITEM_GROUP, ELECTRONIA_GROUP_KEY, ELECTRONIA_GROUP)
         ItemGroupEvents.modifyEntriesEvent(ELECTRONIA_GROUP_KEY).register { itemGroup ->
             itemGroup.add(ModBlocks.HAND_CRANK_GENERATOR)
+            itemGroup.add(ModBlocks.CRANK_PRESS)
             itemGroup.add(ModItems.CRANK)
         }
     }

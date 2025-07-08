@@ -16,8 +16,13 @@ object ModBlocks {
         AbstractBlock.Settings.copy(Blocks.IRON_BLOCK)
     )
 
+    val CRANK_PRESS = Block(
+        AbstractBlock.Settings.copy(Blocks.IRON_BLOCK)
+    )
+
     fun register() {
         registerBlock("hand_crank_generator", HAND_CRANK_GENERATOR)
+        registerBlock("crank_press", CRANK_PRESS)
     }
 
     private fun registerBlock(name: String, block: Block) {
