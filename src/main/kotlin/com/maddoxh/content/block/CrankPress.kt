@@ -8,7 +8,10 @@ import net.minecraft.block.BlockWithEntity
 import net.minecraft.block.ShapeContext
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.entity.player.PlayerEntity
+import net.minecraft.item.ItemStack
 import net.minecraft.util.ActionResult
+import net.minecraft.util.Hand
+import net.minecraft.util.ItemActionResult
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
@@ -68,8 +71,26 @@ class CrankPress(settings: Settings): MachineBlock(settings) {
         player: PlayerEntity,
         hit: BlockHitResult
     ): ActionResult {
+        if(!updateBE(world, pos, state, player)) return ActionResult.PASS
+        return ActionResult.SUCCESS
+    }
+
+    override fun onUseWithItem(
+        stack: ItemStack,
+        state: BlockState,
+        world: World,
+        pos: BlockPos,
+        player: PlayerEntity,
+        hand: Hand,
+        hit: BlockHitResult
+    ): ItemActionResult {
+        if(!updateBE(world, pos, state, player)) return ItemActionResult.SKIP_DEFAULT_BLOCK_INTERACTION
+        return ItemActionResult.SUCCESS
+    }
+
+    private fun updateBE(world: World, pos: BlockPos, state: BlockState, player: PlayerEntity): Boolean {
         if(!world.isClient) {
-            val be = world.getBlockEntity(pos) as? CrankPressBlockEntity ?: return ActionResult.PASS
+            val be = world.getBlockEntity(pos) as? CrankPressBlockEntity ?: return false
 
             if(!player.isSneaking) be.crank()
             else player.openHandledScreen(be)
@@ -78,6 +99,6 @@ class CrankPress(settings: Settings): MachineBlock(settings) {
             world.updateListeners(pos, state, state, 0)
         }
 
-        return ActionResult.SUCCESS
+        return true
     }
 }
