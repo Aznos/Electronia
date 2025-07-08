@@ -2,6 +2,7 @@ package com.maddoxh.content.block.entity
 
 import com.maddoxh.content.screen.CrankPressScreenHandler
 import com.maddoxh.registry.ModBlockEntities
+import com.maddoxh.registry.ModSounds
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType
 import net.minecraft.block.BlockState
@@ -19,16 +20,45 @@ import net.minecraft.registry.RegistryWrapper
 import net.minecraft.screen.NamedScreenHandlerFactory
 import net.minecraft.screen.ScreenHandler
 import net.minecraft.server.network.ServerPlayerEntity
+import net.minecraft.sound.SoundCategory
+import net.minecraft.sound.SoundEvents
 import net.minecraft.text.Text
 import net.minecraft.util.collection.DefaultedList
 import net.minecraft.util.math.BlockPos
 
 class CrankPressBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(ModBlockEntities.CRANK_PRESS, pos, state), Inventory, ExtendedScreenHandlerFactory<BlockPos> {
-    private var lastCrankTime: Long = 0
+    private var crankProgress = 0
+    private var tickCounter = 0
+
     val inv: DefaultedList<ItemStack> = DefaultedList.ofSize(1, ItemStack.EMPTY)
 
-    fun crank(): Boolean {
-        return false
+    fun crank() {
+        crankProgress = (crankProgress + 15).coerceAtMost(100)
+        world?.playSound(null, pos, ModSounds.CRANK, SoundCategory.BLOCKS, 1f, 1f)
+        if(crankProgress >= 100) {
+            world?.playSound(null, pos, SoundEvents.BLOCK_ANVIL_USE, SoundCategory.BLOCKS, 1f, 1f)
+        }
+
+        markDirty()
+        sync()
+    }
+
+    fun serverTick() {
+        tickCounter++
+        if(tickCounter >= 20) {
+            tickCounter = 0
+            if(crankProgress > 0) {
+                crankProgress = (crankProgress - 5).coerceAtLeast(0)
+                markDirty()
+                sync()
+            }
+        }
+    }
+
+    private fun sync(): Unit? = world?.let { BlockEntityUpdateS2CPacket.create(this) }?.let {
+        (world!!.server?.playerManager?.playerList ?: return null).forEach { p ->
+            if(p is ServerPlayerEntity && p.world == world) p.networkHandler.sendPacket(it)
+        }
     }
 
     override fun size() = inv.size

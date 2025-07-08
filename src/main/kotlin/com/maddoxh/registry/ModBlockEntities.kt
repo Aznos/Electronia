@@ -3,10 +3,15 @@ package com.maddoxh.registry
 import com.maddoxh.Electronia
 import com.maddoxh.content.block.entity.CrankPressBlockEntity
 import com.maddoxh.content.block.entity.HandCrankGeneratorBlockEntity
+import net.minecraft.block.BlockState
+import net.minecraft.block.entity.BlockEntityTicker
 import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
 import net.minecraft.util.Identifier
+import net.minecraft.util.math.BlockPos
+import net.minecraft.world.World
+import net.minecraft.world.chunk.BlockEntityTickInvoker
 
 object ModBlockEntities {
     val HAND_CRANK_GENERATOR: BlockEntityType<HandCrankGeneratorBlockEntity> =
@@ -23,5 +28,13 @@ object ModBlockEntities {
             BlockEntityType.Builder.create(::CrankPressBlockEntity, ModBlocks.CRANK_PRESS).build()
         )
 
-    fun register() {}
+    fun register() {
+        BlockEntityTicker<CrankPressBlockEntity> { world, pos, state, be ->
+            if(be is CrankPressBlockEntity) tickCrankPress(world, pos, state, be)
+        }
+    }
+
+    fun tickCrankPress(world: World, pos: BlockPos, state: BlockState, be: CrankPressBlockEntity) {
+        if(!world.isClient) be.serverTick()
+    }
 }

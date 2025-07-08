@@ -51,6 +51,7 @@
 			}
 		},
 		{
+			"name": "piston",
 			"from": [2, 21, 1],
 			"to": [14, 26, 10],
 			"rotation": {"angle": 0, "axis": "y", "origin": [7, 22, 0]},
