@@ -11,6 +11,11 @@ import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.Inventories
 import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
+import net.minecraft.nbt.NbtCompound
+import net.minecraft.network.listener.ClientPlayPacketListener
+import net.minecraft.network.packet.Packet
+import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket
+import net.minecraft.registry.RegistryWrapper
 import net.minecraft.screen.NamedScreenHandlerFactory
 import net.minecraft.screen.ScreenHandler
 import net.minecraft.server.network.ServerPlayerEntity
@@ -51,4 +56,19 @@ class CrankPressBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(ModB
     override fun getScreenOpeningData(p0: ServerPlayerEntity?): BlockPos? {
         return this.pos
     }
+
+    override fun writeNbt(nbt: NbtCompound?, registryLookup: RegistryWrapper.WrapperLookup?) {
+        super.writeNbt(nbt, registryLookup)
+        Inventories.writeNbt(nbt, inv, registryLookup)
+    }
+
+    override fun readNbt(nbt: NbtCompound?, registryLookup: RegistryWrapper.WrapperLookup?) {
+        super.readNbt(nbt, registryLookup)
+        if(nbt != null) {
+            Inventories.readNbt(nbt, inv, registryLookup)
+        }
+    }
+
+    override fun toUpdatePacket(): BlockEntityUpdateS2CPacket = BlockEntityUpdateS2CPacket.create(this)
+    override fun toInitialChunkDataNbt(registryLookup: RegistryWrapper.WrapperLookup?): NbtCompound = createNbt(registryLookup)
 }
