@@ -70,7 +70,12 @@ class CrankPress(settings: Settings): MachineBlock(settings) {
     ): ActionResult {
         if(!world.isClient) {
             val be = world.getBlockEntity(pos) as? CrankPressBlockEntity ?: return ActionResult.PASS
-            be.crank()
+
+            if(!player.isSneaking) be.crank()
+            else player.openHandledScreen(be)
+
+            be.markDirty()
+            world.updateListeners(pos, state, state, 0)
         }
 
         return ActionResult.SUCCESS
