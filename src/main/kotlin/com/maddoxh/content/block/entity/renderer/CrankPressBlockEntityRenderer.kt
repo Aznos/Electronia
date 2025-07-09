@@ -73,10 +73,21 @@ class CrankPressBlockEntityRenderer(dispatcher: BlockEntityRendererFactory.Conte
 
         val consumer: VertexConsumer = vertexConsumers.getBuffer(RenderLayer.getEntityCutoutNoCull(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE))
 
+        val (offX, offZ) = when(facing) {
+            Direction.SOUTH -> -0.375 to -0.12
+            Direction.NORTH ->  0.375 to 0.12
+            Direction.WEST  ->  -0.435 to 0.375
+            Direction.EAST  ->  0.435 to -0.375
+            else            ->  0.0   to  0.0
+        }
+
         matrices.push()
-        matrices.translate(0.5, 0.0, 0.5)
+        matrices.translate(
+            0.5 + offX,
+            1.35 + yOffset,
+            0.5 + offZ
+        )
         matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(yaw))
-        matrices.translate(-0.375, 1.35 + yOffset, -0.115)
 
         MinecraftClient.getInstance()
             .blockRenderManager
