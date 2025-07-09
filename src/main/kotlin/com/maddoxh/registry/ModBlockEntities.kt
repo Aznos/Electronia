@@ -28,13 +28,5 @@ object ModBlockEntities {
             BlockEntityType.Builder.create(::CrankPressBlockEntity, ModBlocks.CRANK_PRESS).build()
         )
 
-    fun register() {
-        BlockEntityTicker<CrankPressBlockEntity> { world, pos, state, be ->
-            if(be is CrankPressBlockEntity) tickCrankPress(world, pos, state, be)
-        }
-    }
-
-    fun tickCrankPress(world: World, pos: BlockPos, state: BlockState, be: CrankPressBlockEntity) {
-        if(!world.isClient) be.serverTick()
-    }
+    fun register() {}
 }

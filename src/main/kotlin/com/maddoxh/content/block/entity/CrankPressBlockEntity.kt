@@ -27,7 +27,7 @@ import net.minecraft.util.collection.DefaultedList
 import net.minecraft.util.math.BlockPos
 
 class CrankPressBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(ModBlockEntities.CRANK_PRESS, pos, state), Inventory, ExtendedScreenHandlerFactory<BlockPos> {
-    private var crankProgress = 0
+    var crankProgress = 0
     private var tickCounter = 0
 
     val inv: DefaultedList<ItemStack> = DefaultedList.ofSize(1, ItemStack.EMPTY)
@@ -55,9 +55,13 @@ class CrankPressBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(ModB
         }
     }
 
-    private fun sync(): Unit? = world?.let { BlockEntityUpdateS2CPacket.create(this) }?.let {
-        (world!!.server?.playerManager?.playerList ?: return null).forEach { p ->
-            if(p is ServerPlayerEntity && p.world == world) p.networkHandler.sendPacket(it)
+    private fun sync() {
+        world?.let { w ->
+            val pkt = BlockEntityUpdateS2CPacket.create(this)
+            w.server?.playerManager?.playerList
+                ?.filterIsInstance<ServerPlayerEntity>()
+                ?.filter { it.world == w }
+                ?.forEach { it.networkHandler.sendPacket(pkt) }
         }
     }
 
@@ -90,6 +94,7 @@ class CrankPressBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(ModB
     override fun writeNbt(nbt: NbtCompound?, registryLookup: RegistryWrapper.WrapperLookup?) {
         super.writeNbt(nbt, registryLookup)
         Inventories.writeNbt(nbt, inv, registryLookup)
+        nbt?.putInt("CrankProgress", crankProgress)
     }
 
     override fun readNbt(nbt: NbtCompound?, registryLookup: RegistryWrapper.WrapperLookup?) {
@@ -97,6 +102,8 @@ class CrankPressBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(ModB
         if(nbt != null) {
             Inventories.readNbt(nbt, inv, registryLookup)
         }
+
+        crankProgress = nbt?.getInt("CrankProgress") ?: 0
     }
 
     override fun toUpdatePacket(): BlockEntityUpdateS2CPacket = BlockEntityUpdateS2CPacket.create(this)

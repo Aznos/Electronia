@@ -1,12 +1,15 @@
 package com.maddoxh.content.block
 
 import com.maddoxh.content.block.entity.CrankPressBlockEntity
+import com.maddoxh.registry.ModBlockEntities
 import com.mojang.serialization.MapCodec
 import net.minecraft.block.BlockRenderType
 import net.minecraft.block.BlockState
 import net.minecraft.block.BlockWithEntity
 import net.minecraft.block.ShapeContext
 import net.minecraft.block.entity.BlockEntity
+import net.minecraft.block.entity.BlockEntityTicker
+import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ActionResult
@@ -119,5 +122,22 @@ class CrankPress(settings: Settings): MachineBlock(settings) {
         }
 
         super.onStateReplaced(state, world, pos, newState, moved)
+    }
+
+
+    override fun <T : BlockEntity> getTicker(
+        world: World,
+        state: BlockState,
+        type: BlockEntityType<T>
+    ): BlockEntityTicker<T>? {
+        if(world.isClient || type != ModBlockEntities.CRANK_PRESS) return null
+
+        return BlockEntityTicker<T> {
+                tickWorld: World,
+                tickPos: BlockPos,
+                tickState: BlockState,
+                blockEntity: T ->
+            (blockEntity as CrankPressBlockEntity).serverTick()
+        }
     }
 }
