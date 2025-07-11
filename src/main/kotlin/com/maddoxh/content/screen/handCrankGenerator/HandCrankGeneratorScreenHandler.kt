@@ -1,5 +1,6 @@
-package com.maddoxh.content.screen
+package com.maddoxh.content.screen.handCrankGenerator
 
+import com.maddoxh.registry.ModScreenHandlers
 import com.maddoxh.registry.ModScreenHandlers.CRANK_PRESS_SCREEN_HANDLER
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.entity.player.PlayerEntity
@@ -10,8 +11,8 @@ import net.minecraft.screen.ScreenHandler
 import net.minecraft.screen.slot.Slot
 import net.minecraft.util.math.BlockPos
 
-class CrankPressScreenHandler(syncID: Int, playerInventory: PlayerInventory?, be: BlockEntity?) :
-    ScreenHandler(CRANK_PRESS_SCREEN_HANDLER, syncID) {
+class HandCrankGeneratorScreenHandler(syncID: Int, playerInventory: PlayerInventory?, be: BlockEntity?) :
+    ScreenHandler(ModScreenHandlers.HAND_CRANK_GENERATOR_SCREEN_HANDLER, syncID) {
     private val inventory: Inventory
 
     constructor(syncID: Int, playerInventory: PlayerInventory, pos: BlockPos?) : this(
@@ -23,7 +24,7 @@ class CrankPressScreenHandler(syncID: Int, playerInventory: PlayerInventory?, be
     init {
         checkSize(be as Inventory, 1)
         this.inventory = be as Inventory
-        this.addSlot(Slot(inventory, 0, 80, 35))
+        this.addSlot(Slot(inventory, 0, 152, 56))
 
         addPlayerInventory(playerInventory)
         addPlayerHotbar(playerInventory)

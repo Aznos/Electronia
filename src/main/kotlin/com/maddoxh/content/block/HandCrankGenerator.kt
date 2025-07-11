@@ -1,5 +1,6 @@
 package com.maddoxh.content.block
 
+import com.maddoxh.content.block.entity.CrankPressBlockEntity
 import com.maddoxh.content.block.entity.HandCrankGeneratorBlockEntity
 import com.maddoxh.registry.ModSounds
 import com.mojang.serialization.MapCodec
@@ -76,8 +77,13 @@ class HandCrankGenerator(settings: Settings) : MachineBlock(settings) {
         hit: BlockHitResult
     ): ActionResult {
         if(!world.isClient) {
-            val be = world.getBlockEntity(pos) as? HandCrankGeneratorBlockEntity ?: return ActionResult.PASS
-            player.sendMessage(Text.literal(be.crank(world)), true)
+            if(player.isSneaking) {
+                val be = world.getBlockEntity(pos) as? HandCrankGeneratorBlockEntity ?: return ActionResult.PASS
+                player.openHandledScreen(be)
+            } else {
+                val be = world.getBlockEntity(pos) as? HandCrankGeneratorBlockEntity ?: return ActionResult.PASS
+                player.sendMessage(Text.literal(be.crank(world)), true)
+            }
         }
 
         return ActionResult.SUCCESS

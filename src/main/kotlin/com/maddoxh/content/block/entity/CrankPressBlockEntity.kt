@@ -2,7 +2,7 @@ package com.maddoxh.content.block.entity
 
 import com.maddoxh.content.recipe.PressRecipe
 import com.maddoxh.content.recipe.PressRecipeInput
-import com.maddoxh.content.screen.CrankPressScreenHandler
+import com.maddoxh.content.screen.crankPress.CrankPressScreenHandler
 import com.maddoxh.registry.ModBlockEntities
 import com.maddoxh.registry.ModRecipes
 import com.maddoxh.registry.ModSounds
