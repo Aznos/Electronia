@@ -5,5 +5,7 @@
   "item.electronia.crank": "Crank",
   "item.electronia.copper_wire": "Copper Wire",
 
-  "itemGroup.electronia": "Electronia"
+  "itemGroup.electronia": "Electronia",
+
+  "jei.electronia.pressing": "Pressing"
 }

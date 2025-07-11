@@ -32,6 +32,9 @@
 				"value": "com.maddoxh.ElectroniaDataGenerator",
 				"adapter": "kotlin"
 			}
+		],
+		"jei_mod_plugin": [
+			"com.maddoxh.integration.PressingJeiPlugin"
 		]
 	},
 	"mixins": [
