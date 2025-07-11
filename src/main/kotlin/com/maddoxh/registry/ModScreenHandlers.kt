@@ -1,8 +1,8 @@
 package com.maddoxh.registry
 
 import com.maddoxh.Electronia
-import com.maddoxh.content.screen.crankPress.CrankPressScreenHandler
-import com.maddoxh.content.screen.handCrankGenerator.HandCrankGeneratorScreenHandler
+import com.maddoxh.content.screen.crank_press.CrankPressScreenHandler
+import com.maddoxh.content.screen.hand_crank_generator.HandCrankGeneratorScreenHandler
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.registry.Registries

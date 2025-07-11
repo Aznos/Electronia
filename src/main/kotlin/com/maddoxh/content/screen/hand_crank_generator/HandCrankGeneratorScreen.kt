@@ -1,4 +1,4 @@
-package com.maddoxh.content.screen.crankPress
+package com.maddoxh.content.screen.hand_crank_generator
 
 import com.maddoxh.Electronia
 import com.mojang.blaze3d.systems.RenderSystem
@@ -9,8 +9,8 @@ import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.text.Text
 import net.minecraft.util.Identifier
 
-class CrankPressScreen(handler: CrankPressScreenHandler, inventory: PlayerInventory, text: Text) : net.minecraft.client.gui.screen.ingame.HandledScreen<CrankPressScreenHandler>(handler, inventory, text) {
-    val texture: Identifier = Identifier.of(Electronia.MOD_ID, "textures/gui/crank_press/screen.png")
+class HandCrankGeneratorScreen(handler: HandCrankGeneratorScreenHandler, inventory: PlayerInventory, text: Text) : HandledScreen<HandCrankGeneratorScreenHandler>(handler, inventory, text) {
+    val texture: Identifier = Identifier.of(Electronia.MOD_ID, "textures/gui/hand_crank_generator/screen.png")
 
     override fun init() {
         super.init()

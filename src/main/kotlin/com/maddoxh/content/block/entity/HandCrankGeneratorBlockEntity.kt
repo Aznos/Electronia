@@ -1,8 +1,7 @@
 package com.maddoxh.content.block.entity
 
 import com.maddoxh.content.energy.EnergyStorage
-import com.maddoxh.content.screen.crankPress.CrankPressScreenHandler
-import com.maddoxh.content.screen.handCrankGenerator.HandCrankGeneratorScreenHandler
+import com.maddoxh.content.screen.hand_crank_generator.HandCrankGeneratorScreenHandler
 import com.maddoxh.registry.ModBlockEntities
 import com.maddoxh.registry.ModSounds
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory
@@ -15,7 +14,6 @@ import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.registry.RegistryWrapper
-import net.minecraft.screen.ScreenHandler
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.sound.SoundCategory
 import net.minecraft.sound.SoundEvents
