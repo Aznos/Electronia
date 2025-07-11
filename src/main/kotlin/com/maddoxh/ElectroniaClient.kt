@@ -1,8 +1,8 @@
 package com.maddoxh
 
 import com.maddoxh.content.block.entity.renderer.CrankPressBlockEntityRenderer
-import com.maddoxh.content.screen.crank_press.CrankPressScreen
-import com.maddoxh.content.screen.hand_crank_generator.HandCrankGeneratorScreen
+import com.maddoxh.content.screen.crankpress.CrankPressScreen
+import com.maddoxh.content.screen.handCrankGenerator.HandCrankGeneratorScreen
 import com.maddoxh.registry.ModBlockEntities
 import com.maddoxh.registry.ModScreenHandlers
 import net.fabricmc.api.ClientModInitializer

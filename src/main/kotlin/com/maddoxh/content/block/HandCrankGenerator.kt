@@ -26,7 +26,7 @@ import net.minecraft.world.WorldAccess
  * A hand-cranked generator that produces power when cranked in EU
  */
 class HandCrankGenerator(settings: Settings) : MachineBlock(settings) {
-    val SHAPE: VoxelShape = createCuboidShape(-4.0, 0.0, -4.0, 20.0, 28.0, 20.0)
+    val shape: VoxelShape = createCuboidShape(-4.0, 0.0, -4.0, 20.0, 28.0, 20.0)
 
     companion object {
         val CODEC: MapCodec<HandCrankGenerator> = createCodec(::HandCrankGenerator)
@@ -44,7 +44,7 @@ class HandCrankGenerator(settings: Settings) : MachineBlock(settings) {
         pos: BlockPos,
         context: ShapeContext
     ): VoxelShape {
-        return SHAPE
+        return shape
     }
 
     override fun getCollisionShape(
@@ -53,7 +53,7 @@ class HandCrankGenerator(settings: Settings) : MachineBlock(settings) {
         pos: BlockPos,
         context: ShapeContext
     ): VoxelShape? {
-        return SHAPE
+        return shape
     }
 
     override fun getStateForNeighborUpdate(

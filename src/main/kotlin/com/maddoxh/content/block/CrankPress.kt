@@ -25,7 +25,7 @@ import net.minecraft.world.World
 import net.minecraft.world.WorldAccess
 
 class CrankPress(settings: Settings): MachineBlock(settings) {
-    val SHAPE: VoxelShape = createCuboidShape(0.0, 0.0, 0.0, 16.0, 32.0, 16.0)
+    val shape: VoxelShape = createCuboidShape(0.0, 0.0, 0.0, 16.0, 32.0, 16.0)
 
     companion object {
         val CODEC: MapCodec<CrankPress> = createCodec(::CrankPress)
@@ -43,7 +43,7 @@ class CrankPress(settings: Settings): MachineBlock(settings) {
         pos: BlockPos,
         context: ShapeContext
     ): VoxelShape {
-        return SHAPE
+        return shape
     }
 
     override fun getCollisionShape(
@@ -52,7 +52,7 @@ class CrankPress(settings: Settings): MachineBlock(settings) {
         pos: BlockPos,
         context: ShapeContext
     ): VoxelShape? {
-        return SHAPE
+        return shape
     }
 
     override fun getStateForNeighborUpdate(

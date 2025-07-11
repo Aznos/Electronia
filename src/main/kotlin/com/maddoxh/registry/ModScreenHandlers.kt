@@ -1,8 +1,8 @@
 package com.maddoxh.registry
 
 import com.maddoxh.Electronia
-import com.maddoxh.content.screen.crank_press.CrankPressScreenHandler
-import com.maddoxh.content.screen.hand_crank_generator.HandCrankGeneratorScreenHandler
+import com.maddoxh.content.screen.crankpress.CrankPressScreenHandler
+import com.maddoxh.content.screen.handCrankGenerator.HandCrankGeneratorScreenHandler
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.registry.Registries
@@ -16,7 +16,8 @@ object ModScreenHandlers {
         Registry.register(
             Registries.SCREEN_HANDLER,
             Identifier.of(Electronia.MOD_ID, "crank_press_screen_handler"),
-            ExtendedScreenHandlerType<CrankPressScreenHandler?, BlockPos?>({ syncID: Int, playerInventory: PlayerInventory, pos: BlockPos? ->
+            ExtendedScreenHandlerType<CrankPressScreenHandler?, BlockPos?>(
+                { syncID: Int, playerInventory: PlayerInventory, pos: BlockPos? ->
                 CrankPressScreenHandler(
                     syncID,
                     playerInventory,
@@ -29,7 +30,8 @@ object ModScreenHandlers {
         Registry.register(
             Registries.SCREEN_HANDLER,
             Identifier.of(Electronia.MOD_ID, "hand_crank_generator_screen_handler"),
-            ExtendedScreenHandlerType<HandCrankGeneratorScreenHandler?, BlockPos?>({ syncID: Int, playerInventory: PlayerInventory, pos: BlockPos? ->
+            ExtendedScreenHandlerType<HandCrankGeneratorScreenHandler?, BlockPos?>(
+                { syncID: Int, playerInventory: PlayerInventory, pos: BlockPos? ->
                 HandCrankGeneratorScreenHandler(
                     syncID,
                     playerInventory,

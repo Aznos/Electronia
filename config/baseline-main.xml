@@ -76,14 +76,14 @@
     <ID>NewLineAtEndOfFile:CrankPressBlockEntity.kt$com.maddoxh.content.block.entity.CrankPressBlockEntity.kt</ID>
     <ID>NewLineAtEndOfFile:CrankPressBlockEntityRenderer.kt$com.maddoxh.content.block.entity.renderer.CrankPressBlockEntityRenderer.kt</ID>
     <ID>NewLineAtEndOfFile:CrankPressCategory.kt$com.maddoxh.integration.CrankPressCategory.kt</ID>
-    <ID>NewLineAtEndOfFile:CrankPressScreen.kt$com.maddoxh.content.screen.crank_press.CrankPressScreen.kt</ID>
+    <ID>NewLineAtEndOfFile:CrankPressScreen.kt$com.maddoxh.content.screen.crankpress.CrankPressScreen.kt</ID>
     <ID>NewLineAtEndOfFile:Electronia.kt$com.maddoxh.Electronia.kt</ID>
     <ID>NewLineAtEndOfFile:ElectroniaClient.kt$com.maddoxh.ElectroniaClient.kt</ID>
     <ID>NewLineAtEndOfFile:ElectroniaDataGenerator.kt$com.maddoxh.ElectroniaDataGenerator.kt</ID>
     <ID>NewLineAtEndOfFile:EnergyStorage.kt$com.maddoxh.content.energy.EnergyStorage.kt</ID>
     <ID>NewLineAtEndOfFile:HandCrankGenerator.kt$com.maddoxh.content.block.HandCrankGenerator.kt</ID>
     <ID>NewLineAtEndOfFile:HandCrankGeneratorBlockEntity.kt$com.maddoxh.content.block.entity.HandCrankGeneratorBlockEntity.kt</ID>
-    <ID>NewLineAtEndOfFile:HandCrankGeneratorScreen.kt$com.maddoxh.content.screen.hand_crank_generator.HandCrankGeneratorScreen.kt</ID>
+    <ID>NewLineAtEndOfFile:HandCrankGeneratorScreen.kt$com.maddoxh.content.screen.handCrankGenerator.HandCrankGeneratorScreen.kt</ID>
     <ID>NewLineAtEndOfFile:MachineBlock.kt$com.maddoxh.content.block.MachineBlock.kt</ID>
     <ID>NewLineAtEndOfFile:ModBlockEntities.kt$com.maddoxh.registry.ModBlockEntities.kt</ID>
     <ID>NewLineAtEndOfFile:ModBlockTagProvider.kt$com.maddoxh.datagen.ModBlockTagProvider.kt</ID>
@@ -99,10 +99,10 @@
     <ID>NewLineAtEndOfFile:PressRecipe.kt$com.maddoxh.content.recipe.PressRecipe.kt</ID>
     <ID>NewLineAtEndOfFile:PressRecipeInput.kt$com.maddoxh.content.recipe.PressRecipeInput.kt</ID>
     <ID>NewLineAtEndOfFile:PressingJeiPlugin.kt$com.maddoxh.integration.PressingJeiPlugin.kt</ID>
-    <ID>PackageNaming:CrankPressScreen.kt$package com.maddoxh.content.screen.crank_press</ID>
-    <ID>PackageNaming:CrankPressScreenHandler.kt$package com.maddoxh.content.screen.crank_press</ID>
-    <ID>PackageNaming:HandCrankGeneratorScreen.kt$package com.maddoxh.content.screen.hand_crank_generator</ID>
-    <ID>PackageNaming:HandCrankGeneratorScreenHandler.kt$package com.maddoxh.content.screen.hand_crank_generator</ID>
+    <ID>PackageNaming:CrankPressScreen.kt$package com.maddoxh.content.screen.crankpress</ID>
+    <ID>PackageNaming:CrankPressScreenHandler.kt$package com.maddoxh.content.screen.crankpress</ID>
+    <ID>PackageNaming:HandCrankGeneratorScreen.kt$package com.maddoxh.content.screen.handCrankGenerator</ID>
+    <ID>PackageNaming:HandCrankGeneratorScreenHandler.kt$package com.maddoxh.content.screen.handCrankGenerator</ID>
     <ID>ReturnCount:CrankPressBlockEntity.kt$CrankPressBlockEntity$private fun tryCraft()</ID>
     <ID>ReturnCount:CrankPressScreenHandler.kt$CrankPressScreenHandler$override fun quickMove(player: PlayerEntity?, invSlot: Int): ItemStack?</ID>
     <ID>ReturnCount:HandCrankGenerator.kt$HandCrankGenerator$override fun onUse( state: BlockState, world: World, pos: BlockPos, player: PlayerEntity, hit: BlockHitResult ): ActionResult</ID>

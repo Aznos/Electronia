@@ -1,7 +1,7 @@
 package com.maddoxh.content.block.entity
 
 import com.maddoxh.content.energy.EnergyStorage
-import com.maddoxh.content.screen.hand_crank_generator.HandCrankGeneratorScreenHandler
+import com.maddoxh.content.screen.handCrankGenerator.HandCrankGeneratorScreenHandler
 import com.maddoxh.registry.ModBlockEntities
 import com.maddoxh.registry.ModSounds
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory
@@ -22,7 +22,10 @@ import net.minecraft.util.collection.DefaultedList
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
-class HandCrankGeneratorBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(ModBlockEntities.HAND_CRANK_GENERATOR, pos, state), EnergyStorage, Inventory, ExtendedScreenHandlerFactory<BlockPos> {
+class HandCrankGeneratorBlockEntity(pos: BlockPos, state: BlockState)
+    : BlockEntity(ModBlockEntities.HAND_CRANK_GENERATOR, pos, state),
+    EnergyStorage, Inventory, ExtendedScreenHandlerFactory<BlockPos>
+{
     private var storedEu: Long = 0
     private val capacity: Long = 250
     private var lastCrankTime: Long = 0

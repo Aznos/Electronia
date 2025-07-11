@@ -13,7 +13,8 @@ import net.minecraft.text.Text
 import net.minecraft.util.Identifier
 
 object ModItemGroups {
-    val ELECTRONIA_GROUP_KEY: RegistryKey<ItemGroup> = RegistryKey.of(RegistryKeys.ITEM_GROUP, Identifier.of(Electronia.MOD_ID, "electronia"))
+    val ELECTRONIA_GROUP_KEY: RegistryKey<ItemGroup> =
+        RegistryKey.of(RegistryKeys.ITEM_GROUP, Identifier.of(Electronia.MOD_ID, "electronia"))
     val ELECTRONIA_GROUP: ItemGroup? = FabricItemGroup.builder()
         .icon { ItemStack(ModBlocks.HAND_CRANK_GENERATOR) }
         .displayName(Text.translatable("itemGroup.electronia"))

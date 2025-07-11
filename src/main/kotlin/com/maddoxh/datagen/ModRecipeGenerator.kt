@@ -11,7 +11,9 @@ import net.minecraft.recipe.book.RecipeCategory
 import net.minecraft.registry.RegistryWrapper
 import java.util.concurrent.CompletableFuture
 
-class ModRecipeGenerator(output: FabricDataOutput, registriesFuture: CompletableFuture<RegistryWrapper.WrapperLookup>) : FabricRecipeProvider(output, registriesFuture) {
+class ModRecipeGenerator(output: FabricDataOutput, registriesFuture: CompletableFuture<RegistryWrapper.WrapperLookup>) :
+    FabricRecipeProvider(output, registriesFuture)
+{
     override fun generate(exporter: RecipeExporter) {
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.CRANK)
             .pattern("   ")

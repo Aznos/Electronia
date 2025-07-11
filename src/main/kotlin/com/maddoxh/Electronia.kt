@@ -12,7 +12,8 @@ import org.slf4j.LoggerFactory
 
 object Electronia : ModInitializer {
 	const val MOD_ID = "electronia"
-    private val logger = LoggerFactory.getLogger(MOD_ID)
+	@Suppress("Unused")
+	val logger = LoggerFactory.getLogger(MOD_ID)
 
 	override fun onInitialize() {
 		ModItemGroups.register()

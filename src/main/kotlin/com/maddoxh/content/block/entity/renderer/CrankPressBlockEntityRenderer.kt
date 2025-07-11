@@ -21,7 +21,7 @@ import net.minecraft.util.Identifier
 import net.minecraft.util.math.Direction
 import net.minecraft.util.math.RotationAxis
 
-class CrankPressBlockEntityRenderer(dispatcher: BlockEntityRendererFactory.Context) : BlockEntityRenderer<CrankPressBlockEntity> {
+class CrankPressBlockEntityRenderer() : BlockEntityRenderer<CrankPressBlockEntity> {
     override fun render(
         entity: CrankPressBlockEntity,
         tickDelta: Float,
@@ -36,14 +36,7 @@ class CrankPressBlockEntityRenderer(dispatcher: BlockEntityRendererFactory.Conte
         if(state.block !is CrankPress) return
 
         val facing = state.get(Properties.HORIZONTAL_FACING)
-
-        val yaw = when(facing) {
-            Direction.NORTH -> 180f
-            Direction.SOUTH ->   0f
-            Direction.WEST  ->  90f
-            Direction.EAST  -> -90f
-            else            ->   0f
-        }
+        val yaw = getYaw(facing)
 
         if(!stack.isEmpty) {
             matrices.push()
@@ -71,7 +64,9 @@ class CrankPressBlockEntityRenderer(dispatcher: BlockEntityRendererFactory.Conte
         val pistonModel = MinecraftClient.getInstance()
             .bakedModelManager.getModel(Identifier.of(Electronia.MOD_ID, "block/crank_press_piston"))
 
-        val consumer: VertexConsumer = vertexConsumers.getBuffer(RenderLayer.getEntityCutoutNoCull(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE))
+        val consumer: VertexConsumer = vertexConsumers.getBuffer(
+            RenderLayer.getEntityCutoutNoCull(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE)
+        )
 
         val (offX, offZ) = when(facing) {
             Direction.SOUTH -> -0.375 to -0.12
@@ -103,5 +98,15 @@ class CrankPressBlockEntityRenderer(dispatcher: BlockEntityRendererFactory.Conte
             )
 
         matrices.pop()
+    }
+
+    fun getYaw(facing: Direction): Float {
+        return when(facing) {
+            Direction.NORTH -> 180f
+            Direction.SOUTH -> 0f
+            Direction.WEST  -> 90f
+            Direction.EAST  -> -90f
+            else            -> 0f
+        }
     }
 }

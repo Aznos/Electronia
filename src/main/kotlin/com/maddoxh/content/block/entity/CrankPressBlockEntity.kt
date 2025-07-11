@@ -1,7 +1,7 @@
 package com.maddoxh.content.block.entity
 
 import com.maddoxh.content.recipe.PressRecipeInput
-import com.maddoxh.content.screen.crank_press.CrankPressScreenHandler
+import com.maddoxh.content.screen.crankpress.CrankPressScreenHandler
 import com.maddoxh.registry.ModBlockEntities
 import com.maddoxh.registry.ModRecipes
 import com.maddoxh.registry.ModSounds
@@ -23,7 +23,9 @@ import net.minecraft.text.Text
 import net.minecraft.util.collection.DefaultedList
 import net.minecraft.util.math.BlockPos
 
-class CrankPressBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(ModBlockEntities.CRANK_PRESS, pos, state), Inventory, ExtendedScreenHandlerFactory<BlockPos> {
+class CrankPressBlockEntity(pos: BlockPos, state: BlockState)
+    : BlockEntity(ModBlockEntities.CRANK_PRESS, pos, state), Inventory, ExtendedScreenHandlerFactory<BlockPos>
+{
     var crankProgress = 0
     private var tickCounter = 0
 
@@ -123,5 +125,6 @@ class CrankPressBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(ModB
     }
 
     override fun toUpdatePacket(): BlockEntityUpdateS2CPacket = BlockEntityUpdateS2CPacket.create(this)
-    override fun toInitialChunkDataNbt(registryLookup: RegistryWrapper.WrapperLookup?): NbtCompound = createNbt(registryLookup)
+    override fun toInitialChunkDataNbt(registryLookup: RegistryWrapper.WrapperLookup?): NbtCompound =
+        createNbt(registryLookup)
 }
