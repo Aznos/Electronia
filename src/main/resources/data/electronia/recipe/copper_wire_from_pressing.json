@@ -1,0 +1,10 @@
+{
+  "type": "electronia:pressing",
+  "ingredient": {
+    "item": "minecraft:copper_ingot"
+  },
+  "result": {
+    "id": "electronia:copper_wire",
+    "count": 4
+  }
+}

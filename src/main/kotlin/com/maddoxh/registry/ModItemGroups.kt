@@ -25,7 +25,7 @@ object ModItemGroups {
             itemGroup.add(ModBlocks.HAND_CRANK_GENERATOR)
             itemGroup.add(ModBlocks.CRANK_PRESS)
             itemGroup.add(ModItems.CRANK)
-            itemGroup.add(ModItems.COPPER_WIRES)
+            itemGroup.add(ModItems.COPPER_WIRE)
         }
     }
 }

@@ -1,7 +1,10 @@
 package com.maddoxh.content.block.entity
 
+import com.maddoxh.content.recipe.PressRecipe
+import com.maddoxh.content.recipe.PressRecipeInput
 import com.maddoxh.content.screen.CrankPressScreenHandler
 import com.maddoxh.registry.ModBlockEntities
+import com.maddoxh.registry.ModRecipes
 import com.maddoxh.registry.ModSounds
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType
@@ -11,11 +14,13 @@ import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.Inventories
 import net.minecraft.inventory.Inventory
+import net.minecraft.inventory.SidedInventory
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.network.listener.ClientPlayPacketListener
 import net.minecraft.network.packet.Packet
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket
+import net.minecraft.recipe.RecipeType
 import net.minecraft.registry.RegistryWrapper
 import net.minecraft.screen.NamedScreenHandlerFactory
 import net.minecraft.screen.ScreenHandler
@@ -25,6 +30,7 @@ import net.minecraft.sound.SoundEvents
 import net.minecraft.text.Text
 import net.minecraft.util.collection.DefaultedList
 import net.minecraft.util.math.BlockPos
+import net.minecraft.util.math.Direction
 
 class CrankPressBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(ModBlockEntities.CRANK_PRESS, pos, state), Inventory, ExtendedScreenHandlerFactory<BlockPos> {
     var crankProgress = 0
@@ -37,6 +43,7 @@ class CrankPressBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(ModB
         world?.playSound(null, pos, ModSounds.CRANK, SoundCategory.BLOCKS, 1f, 1f)
         if(crankProgress >= 100) {
             world?.playSound(null, pos, SoundEvents.BLOCK_ANVIL_USE, SoundCategory.BLOCKS, 1f, 1f)
+            tryCraft()
         }
 
         markDirty()
@@ -62,6 +69,23 @@ class CrankPressBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(ModB
                 ?.filterIsInstance<ServerPlayerEntity>()
                 ?.filter { it.world == w }
                 ?.forEach { it.networkHandler.sendPacket(pkt) }
+        }
+    }
+
+    private fun tryCraft() {
+        val w = world ?: return
+        if(w.isClient) return
+        val s = w.server ?: return
+
+        val inStack = inv[0]
+        if(inStack.isEmpty) return
+
+        val recipeEntry = s.recipeManager.getFirstMatch(ModRecipes.pressType, PressRecipeInput(inStack), w)
+        if(recipeEntry.isPresent) {
+            val recipe = recipeEntry.get().value()
+            inv[0] = recipe.output.copy()
+            markDirty()
+            sync()
         }
     }
 
