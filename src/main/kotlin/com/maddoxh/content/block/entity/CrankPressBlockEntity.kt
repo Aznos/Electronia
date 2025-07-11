@@ -94,6 +94,7 @@ class CrankPressBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(ModB
     override fun getStack(slot: Int) = inv[slot]
     override fun removeStack(slot: Int, amount: Int): ItemStack = Inventories.splitStack(inv, slot, amount)
     override fun removeStack(slot: Int): ItemStack = Inventories.removeStack(inv, slot)
+    override fun getMaxCountPerStack(): Int = 1
 
     override fun setStack(slot: Int, stack: ItemStack) {
         inv[slot] = stack
