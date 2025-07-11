@@ -23,7 +23,7 @@ class ModRecipeGenerator(output: FabricDataOutput, registriesFuture: Completable
             .criterion("has_stone", conditionsFromItem(Blocks.STONE))
             .offerTo(exporter)
 
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.CRANK_PRESS)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, ModBlocks.CRANK_PRESS)
             .pattern(" #S")
             .pattern(" @P")
             .pattern("CPS")
@@ -37,6 +37,18 @@ class ModRecipeGenerator(output: FabricDataOutput, registriesFuture: Completable
             .criterion("has_oak_stairs", conditionsFromItem(Blocks.OAK_STAIRS))
             .criterion("has_oak_planks", conditionsFromItem(Blocks.OAK_PLANKS))
             .criterion("has_crank", conditionsFromItem(ModItems.CRANK))
+            .offerTo(exporter)
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, ModBlocks.HAND_CRANK_GENERATOR)
+            .pattern("PPP")
+            .pattern("CWP")
+            .pattern("PPP")
+            .input('P', Blocks.OAK_PLANKS)
+            .input('C', ModItems.CRANK)
+            .input('W', ModItems.COPPER_WIRE)
+            .criterion("has_oak_planks", conditionsFromItem(Blocks.OAK_PLANKS))
+            .criterion("has_crank", conditionsFromItem(ModItems.CRANK))
+            .criterion("has_copper_wire", conditionsFromItem(ModItems.COPPER_WIRE))
             .offerTo(exporter)
     }
 }
