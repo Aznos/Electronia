@@ -1,0 +1,119 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>CyclomaticComplexMethod:CrankPressBlockEntityRenderer.kt$CrankPressBlockEntityRenderer$override fun render( entity: CrankPressBlockEntity, tickDelta: Float, matrices: MatrixStack, vertexConsumers: VertexConsumerProvider, light: Int, overlay: Int )</ID>
+    <ID>EmptyFunctionBlock:ModBlockEntities.kt$ModBlockEntities${}</ID>
+    <ID>EmptyFunctionBlock:ModItemTagProvider.kt$ModItemTagProvider${ }</ID>
+    <ID>EmptyFunctionBlock:ModModelProvider.kt$ModModelProvider${ }</ID>
+    <ID>EmptyFunctionBlock:ModRecipes.kt$ModRecipes${}</ID>
+    <ID>EmptyFunctionBlock:ModScreenHandlers.kt$ModScreenHandlers${}</ID>
+    <ID>EmptyFunctionBlock:ModSounds.kt$ModSounds${}</ID>
+    <ID>ForbiddenComment:CrankPress.kt$CrankPress$//TODO: Update for connectivity</ID>
+    <ID>ForbiddenComment:HandCrankGenerator.kt$HandCrankGenerator$//TODO: Update for connectivity</ID>
+    <ID>LongMethod:CrankPressBlockEntityRenderer.kt$CrankPressBlockEntityRenderer$override fun render( entity: CrankPressBlockEntity, tickDelta: Float, matrices: MatrixStack, vertexConsumers: VertexConsumerProvider, light: Int, overlay: Int )</ID>
+    <ID>MagicNumber:CrankPress.kt$CrankPress$16.0</ID>
+    <ID>MagicNumber:CrankPress.kt$CrankPress$32.0</ID>
+    <ID>MagicNumber:CrankPressBlockEntity.kt$CrankPressBlockEntity$0.5</ID>
+    <ID>MagicNumber:CrankPressBlockEntity.kt$CrankPressBlockEntity$100</ID>
+    <ID>MagicNumber:CrankPressBlockEntity.kt$CrankPressBlockEntity$15</ID>
+    <ID>MagicNumber:CrankPressBlockEntity.kt$CrankPressBlockEntity$20</ID>
+    <ID>MagicNumber:CrankPressBlockEntity.kt$CrankPressBlockEntity$5</ID>
+    <ID>MagicNumber:CrankPressBlockEntity.kt$CrankPressBlockEntity$64.0</ID>
+    <ID>MagicNumber:CrankPressBlockEntityRenderer.kt$CrankPressBlockEntityRenderer$0.12</ID>
+    <ID>MagicNumber:CrankPressBlockEntityRenderer.kt$CrankPressBlockEntityRenderer$0.2</ID>
+    <ID>MagicNumber:CrankPressBlockEntityRenderer.kt$CrankPressBlockEntityRenderer$0.375</ID>
+    <ID>MagicNumber:CrankPressBlockEntityRenderer.kt$CrankPressBlockEntityRenderer$0.435</ID>
+    <ID>MagicNumber:CrankPressBlockEntityRenderer.kt$CrankPressBlockEntityRenderer$0.5</ID>
+    <ID>MagicNumber:CrankPressBlockEntityRenderer.kt$CrankPressBlockEntityRenderer$0.5f</ID>
+    <ID>MagicNumber:CrankPressBlockEntityRenderer.kt$CrankPressBlockEntityRenderer$0.615</ID>
+    <ID>MagicNumber:CrankPressBlockEntityRenderer.kt$CrankPressBlockEntityRenderer$0.75</ID>
+    <ID>MagicNumber:CrankPressBlockEntityRenderer.kt$CrankPressBlockEntityRenderer$1.35</ID>
+    <ID>MagicNumber:CrankPressBlockEntityRenderer.kt$CrankPressBlockEntityRenderer$100f</ID>
+    <ID>MagicNumber:CrankPressBlockEntityRenderer.kt$CrankPressBlockEntityRenderer$180f</ID>
+    <ID>MagicNumber:CrankPressBlockEntityRenderer.kt$CrankPressBlockEntityRenderer$90f</ID>
+    <ID>MagicNumber:CrankPressCategory.kt$CrankPressCategory$12</ID>
+    <ID>MagicNumber:CrankPressCategory.kt$CrankPressCategory$32</ID>
+    <ID>MagicNumber:CrankPressCategory.kt$CrankPressCategory$64</ID>
+    <ID>MagicNumber:CrankPressCategory.kt$CrankPressCategory$8</ID>
+    <ID>MagicNumber:CrankPressCategory.kt$CrankPressCategory$96</ID>
+    <ID>MagicNumber:CrankPressScreenHandler.kt$CrankPressScreenHandler$142</ID>
+    <ID>MagicNumber:CrankPressScreenHandler.kt$CrankPressScreenHandler$18</ID>
+    <ID>MagicNumber:CrankPressScreenHandler.kt$CrankPressScreenHandler$35</ID>
+    <ID>MagicNumber:CrankPressScreenHandler.kt$CrankPressScreenHandler$8</ID>
+    <ID>MagicNumber:CrankPressScreenHandler.kt$CrankPressScreenHandler$80</ID>
+    <ID>MagicNumber:CrankPressScreenHandler.kt$CrankPressScreenHandler$84</ID>
+    <ID>MagicNumber:CrankPressScreenHandler.kt$CrankPressScreenHandler$9</ID>
+    <ID>MagicNumber:HandCrankGenerator.kt$HandCrankGenerator$20.0</ID>
+    <ID>MagicNumber:HandCrankGenerator.kt$HandCrankGenerator$28.0</ID>
+    <ID>MagicNumber:HandCrankGenerator.kt$HandCrankGenerator$4.0</ID>
+    <ID>MagicNumber:HandCrankGeneratorBlockEntity.kt$HandCrankGeneratorBlockEntity$0.5</ID>
+    <ID>MagicNumber:HandCrankGeneratorBlockEntity.kt$HandCrankGeneratorBlockEntity$10</ID>
+    <ID>MagicNumber:HandCrankGeneratorBlockEntity.kt$HandCrankGeneratorBlockEntity$2000</ID>
+    <ID>MagicNumber:HandCrankGeneratorBlockEntity.kt$HandCrankGeneratorBlockEntity$250</ID>
+    <ID>MagicNumber:HandCrankGeneratorBlockEntity.kt$HandCrankGeneratorBlockEntity$64.0</ID>
+    <ID>MagicNumber:HandCrankGeneratorScreenHandler.kt$HandCrankGeneratorScreenHandler$142</ID>
+    <ID>MagicNumber:HandCrankGeneratorScreenHandler.kt$HandCrankGeneratorScreenHandler$153</ID>
+    <ID>MagicNumber:HandCrankGeneratorScreenHandler.kt$HandCrankGeneratorScreenHandler$18</ID>
+    <ID>MagicNumber:HandCrankGeneratorScreenHandler.kt$HandCrankGeneratorScreenHandler$57</ID>
+    <ID>MagicNumber:HandCrankGeneratorScreenHandler.kt$HandCrankGeneratorScreenHandler$8</ID>
+    <ID>MagicNumber:HandCrankGeneratorScreenHandler.kt$HandCrankGeneratorScreenHandler$84</ID>
+    <ID>MagicNumber:HandCrankGeneratorScreenHandler.kt$HandCrankGeneratorScreenHandler$9</ID>
+    <ID>MaxLineLength:CrankPressBlockEntity.kt$CrankPressBlockEntity$class</ID>
+    <ID>MaxLineLength:CrankPressBlockEntity.kt$CrankPressBlockEntity$override fun toInitialChunkDataNbt(registryLookup: RegistryWrapper.WrapperLookup?): NbtCompound</ID>
+    <ID>MaxLineLength:CrankPressBlockEntityRenderer.kt$CrankPressBlockEntityRenderer$class</ID>
+    <ID>MaxLineLength:CrankPressBlockEntityRenderer.kt$CrankPressBlockEntityRenderer$val consumer: VertexConsumer = vertexConsumers.getBuffer(RenderLayer.getEntityCutoutNoCull(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE))</ID>
+    <ID>MaxLineLength:CrankPressScreen.kt$CrankPressScreen$class</ID>
+    <ID>MaxLineLength:HandCrankGeneratorBlockEntity.kt$HandCrankGeneratorBlockEntity$class</ID>
+    <ID>MaxLineLength:HandCrankGeneratorScreen.kt$HandCrankGeneratorScreen$class</ID>
+    <ID>MaxLineLength:ModBlockTagProvider.kt$ModBlockTagProvider$class</ID>
+    <ID>MaxLineLength:ModItemGroups.kt$ModItemGroups$val ELECTRONIA_GROUP_KEY: RegistryKey&lt;ItemGroup&gt; = RegistryKey.of(RegistryKeys.ITEM_GROUP, Identifier.of(Electronia.MOD_ID, "electronia"))</ID>
+    <ID>MaxLineLength:ModItemTagProvider.kt$ModItemTagProvider$class</ID>
+    <ID>MaxLineLength:ModLootTableGenerator.kt$ModLootTableGenerator$class</ID>
+    <ID>MaxLineLength:ModRecipeGenerator.kt$ModRecipeGenerator$class</ID>
+    <ID>MaxLineLength:ModScreenHandlers.kt$ModScreenHandlers$ExtendedScreenHandlerType</ID>
+    <ID>NewLineAtEndOfFile:CrankPress.kt$com.maddoxh.content.block.CrankPress.kt</ID>
+    <ID>NewLineAtEndOfFile:CrankPressBlockEntity.kt$com.maddoxh.content.block.entity.CrankPressBlockEntity.kt</ID>
+    <ID>NewLineAtEndOfFile:CrankPressBlockEntityRenderer.kt$com.maddoxh.content.block.entity.renderer.CrankPressBlockEntityRenderer.kt</ID>
+    <ID>NewLineAtEndOfFile:CrankPressCategory.kt$com.maddoxh.integration.CrankPressCategory.kt</ID>
+    <ID>NewLineAtEndOfFile:CrankPressScreen.kt$com.maddoxh.content.screen.crank_press.CrankPressScreen.kt</ID>
+    <ID>NewLineAtEndOfFile:Electronia.kt$com.maddoxh.Electronia.kt</ID>
+    <ID>NewLineAtEndOfFile:ElectroniaClient.kt$com.maddoxh.ElectroniaClient.kt</ID>
+    <ID>NewLineAtEndOfFile:ElectroniaDataGenerator.kt$com.maddoxh.ElectroniaDataGenerator.kt</ID>
+    <ID>NewLineAtEndOfFile:EnergyStorage.kt$com.maddoxh.content.energy.EnergyStorage.kt</ID>
+    <ID>NewLineAtEndOfFile:HandCrankGenerator.kt$com.maddoxh.content.block.HandCrankGenerator.kt</ID>
+    <ID>NewLineAtEndOfFile:HandCrankGeneratorBlockEntity.kt$com.maddoxh.content.block.entity.HandCrankGeneratorBlockEntity.kt</ID>
+    <ID>NewLineAtEndOfFile:HandCrankGeneratorScreen.kt$com.maddoxh.content.screen.hand_crank_generator.HandCrankGeneratorScreen.kt</ID>
+    <ID>NewLineAtEndOfFile:MachineBlock.kt$com.maddoxh.content.block.MachineBlock.kt</ID>
+    <ID>NewLineAtEndOfFile:ModBlockEntities.kt$com.maddoxh.registry.ModBlockEntities.kt</ID>
+    <ID>NewLineAtEndOfFile:ModBlockTagProvider.kt$com.maddoxh.datagen.ModBlockTagProvider.kt</ID>
+    <ID>NewLineAtEndOfFile:ModBlocks.kt$com.maddoxh.registry.ModBlocks.kt</ID>
+    <ID>NewLineAtEndOfFile:ModItemGroups.kt$com.maddoxh.registry.ModItemGroups.kt</ID>
+    <ID>NewLineAtEndOfFile:ModItemTagProvider.kt$com.maddoxh.datagen.ModItemTagProvider.kt</ID>
+    <ID>NewLineAtEndOfFile:ModItems.kt$com.maddoxh.registry.ModItems.kt</ID>
+    <ID>NewLineAtEndOfFile:ModLootTableGenerator.kt$com.maddoxh.datagen.ModLootTableGenerator.kt</ID>
+    <ID>NewLineAtEndOfFile:ModModelProvider.kt$com.maddoxh.datagen.ModModelProvider.kt</ID>
+    <ID>NewLineAtEndOfFile:ModRecipeGenerator.kt$com.maddoxh.datagen.ModRecipeGenerator.kt</ID>
+    <ID>NewLineAtEndOfFile:ModRecipes.kt$com.maddoxh.registry.ModRecipes.kt</ID>
+    <ID>NewLineAtEndOfFile:ModSounds.kt$com.maddoxh.registry.ModSounds.kt</ID>
+    <ID>NewLineAtEndOfFile:PressRecipe.kt$com.maddoxh.content.recipe.PressRecipe.kt</ID>
+    <ID>NewLineAtEndOfFile:PressRecipeInput.kt$com.maddoxh.content.recipe.PressRecipeInput.kt</ID>
+    <ID>NewLineAtEndOfFile:PressingJeiPlugin.kt$com.maddoxh.integration.PressingJeiPlugin.kt</ID>
+    <ID>PackageNaming:CrankPressScreen.kt$package com.maddoxh.content.screen.crank_press</ID>
+    <ID>PackageNaming:CrankPressScreenHandler.kt$package com.maddoxh.content.screen.crank_press</ID>
+    <ID>PackageNaming:HandCrankGeneratorScreen.kt$package com.maddoxh.content.screen.hand_crank_generator</ID>
+    <ID>PackageNaming:HandCrankGeneratorScreenHandler.kt$package com.maddoxh.content.screen.hand_crank_generator</ID>
+    <ID>ReturnCount:CrankPressBlockEntity.kt$CrankPressBlockEntity$private fun tryCraft()</ID>
+    <ID>ReturnCount:CrankPressScreenHandler.kt$CrankPressScreenHandler$override fun quickMove(player: PlayerEntity?, invSlot: Int): ItemStack?</ID>
+    <ID>ReturnCount:HandCrankGenerator.kt$HandCrankGenerator$override fun onUse( state: BlockState, world: World, pos: BlockPos, player: PlayerEntity, hit: BlockHitResult ): ActionResult</ID>
+    <ID>ReturnCount:HandCrankGeneratorBlockEntity.kt$HandCrankGeneratorBlockEntity$fun crank(world: World): String</ID>
+    <ID>ReturnCount:HandCrankGeneratorScreenHandler.kt$HandCrankGeneratorScreenHandler$override fun quickMove(player: PlayerEntity?, invSlot: Int): ItemStack?</ID>
+    <ID>TooManyFunctions:CrankPress.kt$CrankPress : MachineBlock</ID>
+    <ID>TooManyFunctions:CrankPressBlockEntity.kt$CrankPressBlockEntity : BlockEntityInventoryExtendedScreenHandlerFactory</ID>
+    <ID>TooManyFunctions:HandCrankGeneratorBlockEntity.kt$HandCrankGeneratorBlockEntity : BlockEntityEnergyStorageInventoryExtendedScreenHandlerFactory</ID>
+    <ID>UnusedPrivateProperty:CrankPressBlockEntityRenderer.kt$CrankPressBlockEntityRenderer$dispatcher: BlockEntityRendererFactory.Context</ID>
+    <ID>UnusedPrivateProperty:Electronia.kt$Electronia$private val logger = LoggerFactory.getLogger(MOD_ID)</ID>
+    <ID>VariableNaming:CrankPress.kt$CrankPress$val SHAPE: VoxelShape = createCuboidShape(0.0, 0.0, 0.0, 16.0, 32.0, 16.0)</ID>
+    <ID>VariableNaming:HandCrankGenerator.kt$HandCrankGenerator$val SHAPE: VoxelShape = createCuboidShape(-4.0, 0.0, -4.0, 20.0, 28.0, 20.0)</ID>
+  </CurrentIssues>
+</SmellBaseline>

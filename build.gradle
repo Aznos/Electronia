@@ -2,6 +2,7 @@ plugins {
 	id 'fabric-loom' version "${loom_version}"
 	id 'maven-publish'
 	id "org.jetbrains.kotlin.jvm" version "2.2.0"
+	id("io.gitlab.arturbosch.detekt") version "[1.23.8]"
 }
 
 version = project.mod_version
@@ -16,6 +17,8 @@ repositories {
 		name = "Jared's maven"
 		url = "https://maven.blamejared.com"
 	}
+
+	mavenCentral()
 }
 
 fabricApi {
@@ -87,4 +90,11 @@ publishing {
 		// The repositories here will be used for publishing your artifact, not for
 		// retrieving dependencies.
 	}
+}
+
+detekt {
+	buildUponDefaultConfig = true
+	allRules = false
+	config.setFrom("$projectDir/config/detekt.yml")
+	baseline = file("$projectDir/config/baseline.xml")
 }
