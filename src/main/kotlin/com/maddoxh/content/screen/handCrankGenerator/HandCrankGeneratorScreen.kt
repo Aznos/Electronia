@@ -22,7 +22,7 @@ class HandCrankGeneratorScreen(handler: HandCrankGeneratorScreenHandler, invento
 
         val x = (width - backgroundWidth) / 2
         val y = (height - backgroundHeight) / 2
-        energyArea = EnergyBarRenderer(x + 81, y + 17, handler.blockEntity)
+        energyArea = EnergyBarRenderer(x + 81, y + 16, handler.blockEntity)
     }
 
     override fun drawBackground(

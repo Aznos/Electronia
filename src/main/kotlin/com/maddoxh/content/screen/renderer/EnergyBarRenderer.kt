@@ -10,7 +10,7 @@ class EnergyBarRenderer(
     private val y: Int,
     private val storage: EnergyStorage,
     private val width: Int = 13,
-    private val height: Int = 56
+    private val height: Int = 57
 ) {
     private val area: Rect2i = Rect2i(x, y, width, height)
 
