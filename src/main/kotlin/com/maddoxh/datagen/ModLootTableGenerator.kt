@@ -15,5 +15,7 @@ class ModLootTableGenerator(
     override fun generate() {
         addDrop(ModBlocks.HAND_CRANK_GENERATOR)
         addDrop(ModBlocks.CRANK_PRESS)
+        addDrop(ModBlocks.LEAD_ORE)
+        addDrop(ModBlocks.DEEPSLATE_LEAD_ORE)
     }
 }

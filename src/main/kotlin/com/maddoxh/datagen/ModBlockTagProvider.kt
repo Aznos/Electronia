@@ -15,6 +15,6 @@ class ModBlockTagProvider(
 {
     override fun configure(wrapper: RegistryWrapper.WrapperLookup) {
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
-            .add(ModBlocks.CRANK_PRESS, ModBlocks.HAND_CRANK_GENERATOR)
+            .add(ModBlocks.CRANK_PRESS, ModBlocks.HAND_CRANK_GENERATOR, ModBlocks.LEAD_ORE, ModBlocks.DEEPSLATE_LEAD_ORE)
     }
 }

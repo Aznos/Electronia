@@ -21,9 +21,19 @@ object ModBlocks {
         AbstractBlock.Settings.copy(Blocks.IRON_BLOCK)
     )
 
+    val LEAD_ORE = Block(
+        AbstractBlock.Settings.copy(Blocks.IRON_ORE)
+    )
+
+    val DEEPSLATE_LEAD_ORE = Block(
+        AbstractBlock.Settings.copy(Blocks.DEEPSLATE_IRON_ORE)
+    )
+
     fun register() {
         registerBlock("hand_crank_generator", HAND_CRANK_GENERATOR)
         registerBlock("crank_press", CRANK_PRESS)
+        registerBlock("lead_ore", LEAD_ORE)
+        registerBlock("deepslate_lead_ore", DEEPSLATE_LEAD_ORE)
     }
 
     private fun registerBlock(name: String, block: Block) {

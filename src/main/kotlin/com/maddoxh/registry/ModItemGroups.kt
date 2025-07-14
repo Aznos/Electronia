@@ -27,6 +27,9 @@ object ModItemGroups {
             itemGroup.add(ModBlocks.CRANK_PRESS)
             itemGroup.add(ModItems.CRANK)
             itemGroup.add(ModItems.COPPER_WIRE)
+            itemGroup.add(ModItems.LEAD_INGOT)
+            itemGroup.add(ModBlocks.LEAD_ORE)
+            itemGroup.add(ModBlocks.DEEPSLATE_LEAD_ORE)
         }
     }
 }

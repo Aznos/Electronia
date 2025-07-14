@@ -52,5 +52,8 @@ class ModRecipeGenerator(output: FabricDataOutput, registriesFuture: Completable
             .criterion("has_crank", conditionsFromItem(ModItems.CRANK))
             .criterion("has_copper_wire", conditionsFromItem(ModItems.COPPER_WIRE))
             .offerTo(exporter)
+
+        offerSmelting(exporter, listOf(ModBlocks.LEAD_ORE, ModBlocks.DEEPSLATE_LEAD_ORE), RecipeCategory.MISC, ModItems.LEAD_INGOT, 0.7f, 200, "smelt_lead_ore")
+        offerBlasting(exporter, listOf(ModBlocks.LEAD_ORE, ModBlocks.DEEPSLATE_LEAD_ORE), RecipeCategory.MISC, ModItems.LEAD_INGOT, 0.4f, 100, "blast_lead_ore")
     }
 }
