@@ -10,6 +10,7 @@ import net.minecraft.world.gen.feature.Feature
 import net.minecraft.world.gen.feature.FeatureConfig
 
 object ModConfiguredFeatures {
+    @Suppress("UnusedParameter")
     fun bootstrap(context: Registerable<ConfiguredFeature<*, *>>) {}
 
     fun registerKey(name: String): RegistryKey<ConfiguredFeature<*, *>> {

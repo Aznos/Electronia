@@ -124,5 +124,6 @@ class HandCrankGeneratorBlockEntity(pos: BlockPos, state: BlockState)
     }
 
     override fun toUpdatePacket(): Packet<ClientPlayPacketListener> = BlockEntityUpdateS2CPacket.create(this)
-    override fun toInitialChunkDataNbt(registryLookup: RegistryWrapper.WrapperLookup): NbtCompound = createNbtWithId(registryLookup)
+    override fun toInitialChunkDataNbt(registryLookup: RegistryWrapper.WrapperLookup): NbtCompound =
+        createNbtWithId(registryLookup)
 }

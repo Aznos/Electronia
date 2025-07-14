@@ -16,6 +16,7 @@ import java.util.List
 
 object ModPlacedFeatures {
     fun bootstrap(context: Registerable<PlacedFeature>) {
+        @Suppress("UnusedPrivateProperty")
         val configuredFeatureRegistryEntryLookup = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE)
     }
 
