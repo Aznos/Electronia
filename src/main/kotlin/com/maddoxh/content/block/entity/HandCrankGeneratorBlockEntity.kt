@@ -5,6 +5,7 @@ import com.maddoxh.content.screen.handCrankGenerator.HandCrankGeneratorScreenHan
 import com.maddoxh.registry.ModBlockEntities
 import com.maddoxh.registry.ModSounds
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory
+import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.entity.player.PlayerEntity
@@ -13,6 +14,9 @@ import net.minecraft.inventory.Inventories
 import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NbtCompound
+import net.minecraft.network.listener.ClientPlayPacketListener
+import net.minecraft.network.packet.Packet
+import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket
 import net.minecraft.registry.RegistryWrapper
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.sound.SoundCategory
@@ -46,9 +50,24 @@ class HandCrankGeneratorBlockEntity(pos: BlockPos, state: BlockState)
         storedEu += 10
         lastCrankTime = now
         markDirty()
+        sync()
+        if(!world.isClient) world.updateListeners(pos, cachedState, cachedState, Block.NOTIFY_ALL)
 
         world.playSound(null, pos, ModSounds.CRANK, SoundCategory.BLOCKS, 1.0f, 1.0f)
         return "Cranked! Current stored EU: $storedEu"
+    }
+
+    private fun sync() {
+        world?.let { w ->
+            if (!w.isClient) {
+                w.updateListeners(
+                    pos,
+                    w.getBlockState(pos),
+                    w.getBlockState(pos),
+                    3
+                )
+            }
+        }
     }
 
     override fun writeNbt(nbt: NbtCompound, registryLookup: RegistryWrapper.WrapperLookup) {
@@ -64,12 +83,14 @@ class HandCrankGeneratorBlockEntity(pos: BlockPos, state: BlockState)
     override fun insert(amount: Long, simulate: Boolean): Long {
         val insertable = (capacity - storedEu).coerceAtMost(amount)
         if(!simulate) storedEu += insertable
+        sync()
         return insertable
     }
 
     override fun extract(amount: Long, simulate: Boolean): Long {
         val extractable = storedEu.coerceAtMost(amount)
         if(!simulate) storedEu -= extractable
+        sync()
         return extractable
     }
 
@@ -101,4 +122,7 @@ class HandCrankGeneratorBlockEntity(pos: BlockPos, state: BlockState)
     override fun getScreenOpeningData(p0: ServerPlayerEntity?): BlockPos? {
         return this.pos
     }
+
+    override fun toUpdatePacket(): Packet<ClientPlayPacketListener> = BlockEntityUpdateS2CPacket.create(this)
+    override fun toInitialChunkDataNbt(registryLookup: RegistryWrapper.WrapperLookup): NbtCompound = createNbtWithId(registryLookup)
 }
