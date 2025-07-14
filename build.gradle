@@ -98,3 +98,7 @@ detekt {
 	config.setFrom("$projectDir/config/detekt.yml")
 	baseline = file("$projectDir/config/baseline.xml")
 }
+
+sourceSets.main {
+	resources.srcDir("src/generated/resources")
+}

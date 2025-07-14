@@ -6,18 +6,34 @@ import net.minecraft.registry.RegistryKey
 import net.minecraft.registry.RegistryKeys
 import net.minecraft.registry.entry.RegistryEntry
 import net.minecraft.util.Identifier
+import net.minecraft.world.gen.YOffset
 import net.minecraft.world.gen.feature.ConfiguredFeature
 import net.minecraft.world.gen.feature.Feature
 import net.minecraft.world.gen.feature.FeatureConfig
 import net.minecraft.world.gen.feature.PlacedFeature
 import net.minecraft.world.gen.feature.PlacedFeatures.register
+import net.minecraft.world.gen.placementmodifier.HeightRangePlacementModifier
 import net.minecraft.world.gen.placementmodifier.PlacementModifier
 import java.util.List
 
 object ModPlacedFeatures {
+    val LEAD_ORE_UPPER_KEY = registerKey("lead_ore_upper")
+    val LEAD_ORE_LOWER_KEY = registerKey("lead_ore_lower")
+
     fun bootstrap(context: Registerable<PlacedFeature>) {
-        @Suppress("UnusedPrivateProperty")
-        val configuredFeatureRegistryEntryLookup = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE)
+        val cfg = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE)
+
+        register(
+            context, registerKey("lead_ore_upper"),
+            cfg.getOrThrow(ModConfiguredFeatures.LEAD_ORE_KEY),
+            ModOrePlacement.modifiersWithCount(3, uniform(0, 48))
+        )
+
+        register(
+            context, registerKey("lead_ore_lower"),
+            cfg.getOrThrow(ModConfiguredFeatures.LEAD_ORE_KEY),
+            ModOrePlacement.modifiersWithCount(2, uniform(-32, 0))
+        )
     }
 
     fun registerKey(name: String): RegistryKey<PlacedFeature> {
@@ -40,4 +56,6 @@ object ModPlacedFeatures {
     ) {
         register(context, key, configuration, listOf(*modifiers))
     }
+
+    private fun uniform(minY: Int, maxY: Int) = HeightRangePlacementModifier.uniform(YOffset.fixed(minY), YOffset.fixed(maxY))
 }
