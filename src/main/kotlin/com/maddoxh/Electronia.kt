@@ -1,5 +1,6 @@
 package com.maddoxh
 
+import com.maddoxh.content.world.gen.ModWorldGeneration
 import com.maddoxh.registry.ModBlockEntities
 import com.maddoxh.registry.ModBlocks
 import com.maddoxh.registry.ModItemGroups
@@ -23,5 +24,6 @@ object Electronia : ModInitializer {
 		ModSounds.register()
 		ModScreenHandlers.register()
 		ModRecipes.register()
+		ModWorldGeneration.register()
 	}
 }
