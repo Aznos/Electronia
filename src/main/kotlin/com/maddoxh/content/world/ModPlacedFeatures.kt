@@ -57,5 +57,6 @@ object ModPlacedFeatures {
         register(context, key, configuration, listOf(*modifiers))
     }
 
-    private fun uniform(minY: Int, maxY: Int) = HeightRangePlacementModifier.uniform(YOffset.fixed(minY), YOffset.fixed(maxY))
+    private fun uniform(minY: Int, maxY: Int) =
+        HeightRangePlacementModifier.uniform(YOffset.fixed(minY), YOffset.fixed(maxY))
 }

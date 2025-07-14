@@ -1,6 +1,10 @@
 package com.maddoxh.content.world
 
-import net.minecraft.world.gen.placementmodifier.*
+import net.minecraft.world.gen.placementmodifier.BiomePlacementModifier
+import net.minecraft.world.gen.placementmodifier.CountPlacementModifier
+import net.minecraft.world.gen.placementmodifier.PlacementModifier
+import net.minecraft.world.gen.placementmodifier.RarityFilterPlacementModifier
+import net.minecraft.world.gen.placementmodifier.SquarePlacementModifier
 
 object ModOrePlacement {
     fun modifiers(
