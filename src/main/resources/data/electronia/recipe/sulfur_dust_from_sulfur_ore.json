@@ -1,0 +1,9 @@
+{
+  "type": "electronia:pressing",
+  "ingredient": {
+    "item": "electronia:sulfur_ore"
+  },
+  "result": {
+    "id": "electronia:sulfur_dust"
+  }
+}
