@@ -1,0 +1,9 @@
+{
+  "type": "electronia:pressing",
+  "ingredient": {
+    "item": "electronia:lead_ingot"
+  },
+  "result": {
+    "id": "electronia:lead_plate"
+  }
+}

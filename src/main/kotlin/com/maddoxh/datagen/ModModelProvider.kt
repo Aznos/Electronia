@@ -21,5 +21,6 @@ class ModModelProvider(output: FabricDataOutput) : FabricModelProvider(output) {
         generator.register(ModItems.COPPER_WIRE, Models.GENERATED)
         generator.register(ModItems.LEAD_INGOT, Models.GENERATED)
         generator.register(ModItems.SULFUR_DUST, Models.GENERATED)
+        generator.register(ModItems.LEAD_PLATE, Models.GENERATED)
     }
 }
