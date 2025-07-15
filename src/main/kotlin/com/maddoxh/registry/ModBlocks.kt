@@ -3,6 +3,7 @@ package com.maddoxh.registry
 import com.maddoxh.Electronia
 import com.maddoxh.content.block.CrankPress
 import com.maddoxh.content.block.HandCrankGenerator
+import com.maddoxh.content.block.Heater
 import net.minecraft.block.AbstractBlock
 import net.minecraft.block.Block
 import net.minecraft.block.Blocks
@@ -18,6 +19,10 @@ object ModBlocks {
     )
 
     val CRANK_PRESS = CrankPress(
+        AbstractBlock.Settings.copy(Blocks.IRON_BLOCK)
+    )
+
+    val HEATER = Heater(
         AbstractBlock.Settings.copy(Blocks.IRON_BLOCK)
     )
 
@@ -39,6 +44,7 @@ object ModBlocks {
     fun register() {
         registerBlock("hand_crank_generator", HAND_CRANK_GENERATOR)
         registerBlock("crank_press", CRANK_PRESS)
+        registerBlock("heater", HEATER)
         registerBlock("lead_ore", LEAD_ORE)
         registerBlock("deepslate_lead_ore", DEEPSLATE_LEAD_ORE)
         registerBlock("sulfur_ore", SULFUR_ORE)

@@ -3,6 +3,7 @@ package com.maddoxh.registry
 import com.maddoxh.Electronia
 import com.maddoxh.content.block.entity.CrankPressBlockEntity
 import com.maddoxh.content.block.entity.HandCrankGeneratorBlockEntity
+import com.maddoxh.content.block.entity.HeaterBlockEntity
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntityTicker
 import net.minecraft.block.entity.BlockEntityType
@@ -26,6 +27,13 @@ object ModBlockEntities {
             Registries.BLOCK_ENTITY_TYPE,
             Identifier.of(Electronia.MOD_ID, "crank_press"),
             BlockEntityType.Builder.create(::CrankPressBlockEntity, ModBlocks.CRANK_PRESS).build()
+        )
+
+    val HEATER: BlockEntityType<HeaterBlockEntity> =
+        Registry.register(
+            Registries.BLOCK_ENTITY_TYPE,
+            Identifier.of(Electronia.MOD_ID, "heater"),
+            BlockEntityType.Builder.create(::HeaterBlockEntity, ModBlocks.HEATER).build()
         )
 
     fun register() {}

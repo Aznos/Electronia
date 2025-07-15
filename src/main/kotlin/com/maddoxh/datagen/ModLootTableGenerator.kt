@@ -19,5 +19,6 @@ class ModLootTableGenerator(
         addDrop(ModBlocks.DEEPSLATE_LEAD_ORE)
         addDrop(ModBlocks.SULFUR_ORE)
         addDrop(ModBlocks.DEEPSLATE_SULFUR_ORE)
+        addDrop(ModBlocks.HEATER)
     }
 }

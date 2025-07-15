@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "electronia:block/heater" },
+    "facing=south": { "model": "electronia:block/heater", "y": 180 },
+    "facing=west": { "model": "electronia:block/heater", "y": 270 },
+    "facing=east": { "model": "electronia:block/heater", "y": 90 }
+  }
+}

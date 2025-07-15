@@ -25,6 +25,7 @@ object ModItemGroups {
         ItemGroupEvents.modifyEntriesEvent(ELECTRONIA_GROUP_KEY).register { itemGroup ->
             itemGroup.add(ModBlocks.HAND_CRANK_GENERATOR)
             itemGroup.add(ModBlocks.CRANK_PRESS)
+            itemGroup.add(ModBlocks.HEATER)
             itemGroup.add(ModItems.CRANK)
             itemGroup.add(ModItems.COPPER_WIRE)
             itemGroup.add(ModItems.LEAD_INGOT)
