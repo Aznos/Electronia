@@ -17,7 +17,8 @@ class ModBlockTagProvider(
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
             .add(
                 ModBlocks.CRANK_PRESS, ModBlocks.HAND_CRANK_GENERATOR,
-                ModBlocks.LEAD_ORE, ModBlocks.DEEPSLATE_LEAD_ORE
+                ModBlocks.LEAD_ORE, ModBlocks.DEEPSLATE_LEAD_ORE,
+                ModBlocks.SULFUR_ORE, ModBlocks.DEEPSLATE_SULFUR_ORE,
             )
     }
 }

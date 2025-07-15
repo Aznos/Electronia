@@ -15,6 +15,7 @@ import net.minecraft.world.gen.feature.OreFeatureConfig
 
 object ModConfiguredFeatures {
     val LEAD_ORE_KEY = registerKey("lead_ore")
+    val SULFUR_ORE_KEY = registerKey("sulfur_ore")
 
     fun bootstrap(context: Registerable<ConfiguredFeature<*, *>>) {
         val stoneReplaceable = TagMatchRuleTest(BlockTags.STONE_ORE_REPLACEABLES)
@@ -25,7 +26,13 @@ object ModConfiguredFeatures {
             OreFeatureConfig.createTarget(deepslateReplaceable, ModBlocks.DEEPSLATE_LEAD_ORE.defaultState)
         )
 
+        val sulfurOres = listOf(
+            OreFeatureConfig.createTarget(stoneReplaceable, ModBlocks.SULFUR_ORE.defaultState),
+            OreFeatureConfig.createTarget(deepslateReplaceable, ModBlocks.DEEPSLATE_SULFUR_ORE.defaultState)
+        )
+
         register(context, LEAD_ORE_KEY, Feature.ORE, OreFeatureConfig(leadOres, 6))
+        register(context, SULFUR_ORE_KEY, Feature.ORE, OreFeatureConfig(sulfurOres, 5))
     }
 
     fun registerKey(name: String): RegistryKey<ConfiguredFeature<*, *>> {

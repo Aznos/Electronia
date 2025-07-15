@@ -28,8 +28,11 @@ object ModItemGroups {
             itemGroup.add(ModItems.CRANK)
             itemGroup.add(ModItems.COPPER_WIRE)
             itemGroup.add(ModItems.LEAD_INGOT)
+            itemGroup.add(ModItems.SULFUR_DUST)
             itemGroup.add(ModBlocks.LEAD_ORE)
+            itemGroup.add(ModBlocks.SULFUR_ORE)
             itemGroup.add(ModBlocks.DEEPSLATE_LEAD_ORE)
+            itemGroup.add(ModBlocks.DEEPSLATE_SULFUR_ORE)
         }
     }
 }

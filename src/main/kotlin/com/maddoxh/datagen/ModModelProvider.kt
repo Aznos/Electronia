@@ -12,11 +12,14 @@ class ModModelProvider(output: FabricDataOutput) : FabricModelProvider(output) {
     override fun generateBlockStateModels(generator: BlockStateModelGenerator) {
         generator.registerSimpleCubeAll(ModBlocks.LEAD_ORE)
         generator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_LEAD_ORE)
+        generator.registerSimpleCubeAll(ModBlocks.SULFUR_ORE)
+        generator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_SULFUR_ORE)
     }
 
     override fun generateItemModels(generator: ItemModelGenerator) {
         generator.register(ModItems.CRANK, Models.GENERATED)
         generator.register(ModItems.COPPER_WIRE, Models.GENERATED)
         generator.register(ModItems.LEAD_INGOT, Models.GENERATED)
+        generator.register(ModItems.SULFUR_DUST, Models.GENERATED)
     }
 }

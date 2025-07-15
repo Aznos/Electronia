@@ -20,6 +20,9 @@ object ModPlacedFeatures {
     val LEAD_ORE_UPPER_KEY = registerKey("lead_ore_upper")
     val LEAD_ORE_LOWER_KEY = registerKey("lead_ore_lower")
 
+    val SULFUR_ORE_UPPER_KEY = registerKey("sulfur_ore_upper")
+    val SULFUR_ORE_LOWER_KEY = registerKey("sulfur_ore_lower")
+
     fun bootstrap(context: Registerable<PlacedFeature>) {
         val cfg = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE)
 
@@ -33,6 +36,20 @@ object ModPlacedFeatures {
             context, registerKey("lead_ore_lower"),
             cfg.getOrThrow(ModConfiguredFeatures.LEAD_ORE_KEY),
             ModOrePlacement.modifiersWithCount(2, uniform(-32, 0))
+        )
+
+        register(context, SULFUR_ORE_UPPER_KEY,
+            cfg.getOrThrow(ModConfiguredFeatures.SULFUR_ORE_KEY),
+            ModOrePlacement.modifiersWithCount(
+                4, uniform(8, 64)
+            )
+        )
+
+        register(context, SULFUR_ORE_LOWER_KEY,
+            cfg.getOrThrow(ModConfiguredFeatures.SULFUR_ORE_KEY),
+            ModOrePlacement.modifiersWithCount(
+                1, uniform(-32, 8)
+            )
         )
     }
 

@@ -3,10 +3,13 @@
   "block.electronia.crank_press": "Crank Press",
   "block.electronia.lead_ore": "Lead Ore",
   "block.electronia.deepslate_lead_ore": "Deepslate Lead Ore",
+  "block.electronia.sulfur_ore": "Sulfur Ore",
+  "block.electronia.deepslate_sulfur_ore": "Deepslate Sulfur Ore",
 
   "item.electronia.crank": "Crank",
   "item.electronia.copper_wire": "Copper Wire",
   "item.electronia.lead_ingot": "Lead Ingot",
+  "item.electronia.sulfur_dust": "Sulfur Dust",
 
   "itemGroup.electronia": "Electronia",
 

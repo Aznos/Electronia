@@ -18,5 +18,16 @@ object ModOreGeneration {
             GenerationStep.Feature.UNDERGROUND_ORES,
             ModPlacedFeatures.LEAD_ORE_LOWER_KEY
         )
+
+        BiomeModifications.addFeature(
+            BiomeSelectors.foundInOverworld(),
+            GenerationStep.Feature.UNDERGROUND_ORES,
+            ModPlacedFeatures.SULFUR_ORE_UPPER_KEY
+        )
+        BiomeModifications.addFeature(
+            BiomeSelectors.foundInOverworld(),
+            GenerationStep.Feature.UNDERGROUND_ORES,
+            ModPlacedFeatures.SULFUR_ORE_LOWER_KEY
+        )
     }
 }
