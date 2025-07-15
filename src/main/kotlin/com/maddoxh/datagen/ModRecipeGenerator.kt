@@ -70,5 +70,14 @@ class ModRecipeGenerator(output: FabricDataOutput, registriesFuture: Completable
             0.4f, 100,
             "blast_lead_ore"
         )
+
+        offerSmelting(
+            exporter,
+            listOf(ModItems.SULFUR_DUST),
+            RecipeCategory.MISC,
+            ModItems.SULFUR_DIOXIDE_BOTTLE,
+            0.1f, 200,
+            "smelt_sulfur_dust"
+        )
     }
 }

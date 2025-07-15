@@ -34,6 +34,7 @@ object ModItemGroups {
             itemGroup.add(ModBlocks.DEEPSLATE_LEAD_ORE)
             itemGroup.add(ModBlocks.DEEPSLATE_SULFUR_ORE)
             itemGroup.add(ModItems.LEAD_PLATE)
+            itemGroup.add(ModItems.SULFUR_DIOXIDE_BOTTLE)
         }
     }
 }
