@@ -14,6 +14,7 @@ import java.util.concurrent.CompletableFuture
 class ModRecipeGenerator(output: FabricDataOutput, registriesFuture: CompletableFuture<RegistryWrapper.WrapperLookup>) :
     FabricRecipeProvider(output, registriesFuture)
 {
+    @Suppress("LongMethod")
     override fun generate(exporter: RecipeExporter) {
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.CRANK)
             .pattern("   ")
