@@ -25,7 +25,28 @@ import net.minecraft.world.World
 import net.minecraft.world.WorldAccess
 
 class Heater(settings: Settings): MachineBlock(settings) {
-    val shape: VoxelShape = createCuboidShape(0.0, 0.0, 0.0, 16.0, 8.0, 16.0)
+    private val shapeN  = createCuboidShape(
+        0.0, 0.0, 0.0,
+        16.0, 6.0, 32.0)
+
+    private val shapeS  = createCuboidShape(
+        0.0, 0.0, -16.0,
+        16.0, 6.0, 16.0)
+
+    private val shapeE  = createCuboidShape(
+        0.0, 0.0, 0.0,
+        32.0, 6.0, 16.0)
+
+    private val shapeW  = createCuboidShape(
+        0.0, 0.0, 0.0,
+        32.0, 6.0, 16.0)
+
+    private val shapeByFacing: Map<Direction, VoxelShape> = mapOf(
+        Direction.NORTH to shapeN,
+        Direction.SOUTH to shapeS,
+        Direction.EAST to shapeE,
+        Direction.WEST to shapeW
+    )
 
     companion object {
         val CODEC: MapCodec<Heater> = createCodec(::Heater)
@@ -42,8 +63,8 @@ class Heater(settings: Settings): MachineBlock(settings) {
         world: BlockView,
         pos: BlockPos,
         context: ShapeContext
-    ): VoxelShape {
-        return shape
+    ): VoxelShape? {
+        return shape(state)
     }
 
     override fun getCollisionShape(
@@ -52,7 +73,7 @@ class Heater(settings: Settings): MachineBlock(settings) {
         pos: BlockPos,
         context: ShapeContext
     ): VoxelShape? {
-        return shape
+        return shape(state)
     }
 
     override fun getStateForNeighborUpdate(
@@ -138,4 +159,6 @@ class Heater(settings: Settings): MachineBlock(settings) {
             (blockEntity as HeaterBlockEntity).serverTick()
         }
     }
+
+    private fun shape(state: BlockState) = shapeByFacing[state.get(FACING)]
 }
