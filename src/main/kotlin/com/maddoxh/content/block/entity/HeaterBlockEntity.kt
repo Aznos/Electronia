@@ -10,7 +10,9 @@ import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.Inventories
 import net.minecraft.inventory.Inventory
+import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
+import net.minecraft.item.Items
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket
 import net.minecraft.registry.RegistryWrapper
@@ -19,20 +21,26 @@ import net.minecraft.text.Text
 import net.minecraft.util.collection.DefaultedList
 import net.minecraft.util.math.BlockPos
 
-const val AMBIENT_TEMP = 25
-const val WARMUP_HEAT = 4
-const val COOLDOWN_RATE = 1
+const val AMBIENT_TEMP = 25.0
+const val WARMUP_HEAT = 0.5
+const val COOLDOWN_RATE = 0.1
 
 class HeaterBlockEntity(pos: BlockPos, state: BlockState)
     : BlockEntity(ModBlockEntities.HEATER, pos, state), Inventory, ExtendedScreenHandlerFactory<BlockPos>
 {
-    var maxTemp = 300
-    var temperature = AMBIENT_TEMP
+    var maxTemp = 300.0
+    var temperature: Double = AMBIENT_TEMP
     private var tickCounter = 0
     val inv: DefaultedList<ItemStack> = DefaultedList.ofSize(1, ItemStack.EMPTY)
 
     fun serverTick() {
         tickCounter++
+        val old = temperature
+        if(inv[0].item == Items.COAL) {
+            if(temperature < maxTemp) temperature = (temperature + WARMUP_HEAT).coerceAtMost(maxTemp)
+        } else if(temperature > AMBIENT_TEMP) temperature = (temperature - COOLDOWN_RATE).coerceAtLeast(AMBIENT_TEMP)
+
+        if(temperature != old) sync()
     }
 
     private fun sync() {
@@ -75,7 +83,7 @@ class HeaterBlockEntity(pos: BlockPos, state: BlockState)
     override fun writeNbt(nbt: NbtCompound?, registryLookup: RegistryWrapper.WrapperLookup?) {
         super.writeNbt(nbt, registryLookup)
         Inventories.writeNbt(nbt, inv, registryLookup)
-        nbt?.putInt("Temp", temperature)
+        nbt?.putDouble("Temp", temperature)
     }
 
     override fun readNbt(nbt: NbtCompound?, registryLookup: RegistryWrapper.WrapperLookup?) {
@@ -84,7 +92,7 @@ class HeaterBlockEntity(pos: BlockPos, state: BlockState)
             Inventories.readNbt(nbt, inv, registryLookup)
         }
 
-        temperature = nbt?.getInt("Temp") ?: AMBIENT_TEMP
+        temperature = nbt?.getDouble("Temp") ?: AMBIENT_TEMP
     }
 
     override fun toUpdatePacket(): BlockEntityUpdateS2CPacket = BlockEntityUpdateS2CPacket.create(this)

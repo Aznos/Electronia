@@ -25,7 +25,7 @@ import net.minecraft.world.World
 import net.minecraft.world.WorldAccess
 
 class Heater(settings: Settings): MachineBlock(settings) {
-    val shape: VoxelShape = createCuboidShape(0.0, 0.0, -16.0, 16.0, 8.0, 16.0)
+    val shape: VoxelShape = createCuboidShape(0.0, 0.0, 0.0, 16.0, 8.0, 16.0)
 
     companion object {
         val CODEC: MapCodec<Heater> = createCodec(::Heater)

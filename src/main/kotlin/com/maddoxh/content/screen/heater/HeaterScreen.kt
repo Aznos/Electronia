@@ -14,18 +14,15 @@ import net.minecraft.util.Identifier
 class HeaterScreen(handler: HeaterScreenHandler, inventory: PlayerInventory, text: Text)
     : HandledScreen<HeaterScreenHandler>(handler, inventory, text)
 {
+    private val tempX = 58
+    private val tempY = 61
     private val texture: Identifier = Identifier.of(Electronia.MOD_ID, "textures/gui/heater/screen.png")
-    private lateinit var temperatureArea: TemperatureRenderer
 
     override fun init() {
         super.init()
 
         val x = (width - backgroundWidth) / 2
         val y = (height - backgroundHeight) / 2
-        temperatureArea = TemperatureRenderer(
-            x + 58, y + 61,
-            handler.blockEntity.temperature, handler.blockEntity.maxTemp
-        )
     }
 
     override fun drawBackground(
@@ -42,15 +39,27 @@ class HeaterScreen(handler: HeaterScreenHandler, inventory: PlayerInventory, tex
         val y = (height - backgroundHeight) / 2
 
         context.drawTexture(texture, x, y, 0, 0, backgroundWidth, backgroundHeight)
-        temperatureArea.draw(context)
+        TemperatureRenderer(
+            (width - backgroundWidth) /2  + tempX,
+            (height - backgroundHeight) / 2 + tempY,
+            handler.blockEntity.temperature,
+            handler.blockEntity.maxTemp
+        ).draw(context)
     }
 
     override fun render(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
         renderBackground(context, mouseX, mouseY, delta)
         super.render(context, mouseX, mouseY, delta)
 
-        if(temperatureArea.isMouseOver(mouseX, mouseY)) {
-            context.drawTooltip(textRenderer, temperatureArea.tooltip(), mouseX, mouseY)
+        val renderer = TemperatureRenderer(
+            (width - backgroundWidth) /2  + tempX,
+            (height - backgroundHeight) / 2 + tempY,
+            handler.blockEntity.temperature,
+            handler.blockEntity.maxTemp
+        )
+
+        if(renderer.isMouseOver(mouseX, mouseY)) {
+            context.drawTooltip(textRenderer, renderer.tooltip(), mouseX, mouseY)
         }
 
         drawMouseoverTooltip(context, mouseX, mouseY)
