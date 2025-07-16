@@ -3,6 +3,7 @@ package com.maddoxh.registry
 import com.maddoxh.Electronia
 import com.maddoxh.content.screen.crankpress.CrankPressScreenHandler
 import com.maddoxh.content.screen.handCrankGenerator.HandCrankGeneratorScreenHandler
+import com.maddoxh.content.screen.heater.HeaterScreenHandler
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.registry.Registries
@@ -38,6 +39,20 @@ object ModScreenHandlers {
                     pos
                 )
             }, BlockPos.PACKET_CODEC)
+        )
+
+    val HEATER_SCREEN_HANDLER: ScreenHandlerType<HeaterScreenHandler?> =
+        Registry.register(
+            Registries.SCREEN_HANDLER,
+            Identifier.of(Electronia.MOD_ID, "heater_screen_handler"),
+            ExtendedScreenHandlerType<HeaterScreenHandler?, BlockPos?>(
+                { syncID: Int, playerInventory: PlayerInventory, pos: BlockPos? ->
+                    HeaterScreenHandler(
+                        syncID,
+                        playerInventory,
+                        pos
+                    )
+                }, BlockPos.PACKET_CODEC)
         )
 
     fun register() {}

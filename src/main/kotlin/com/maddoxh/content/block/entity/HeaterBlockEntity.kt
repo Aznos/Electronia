@@ -1,6 +1,7 @@
 package com.maddoxh.content.block.entity
 
 import com.maddoxh.content.screen.crankpress.CrankPressScreenHandler
+import com.maddoxh.content.screen.heater.HeaterScreenHandler
 import com.maddoxh.registry.ModBlockEntities
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory
 import net.minecraft.block.BlockState
@@ -19,13 +20,13 @@ import net.minecraft.util.collection.DefaultedList
 import net.minecraft.util.math.BlockPos
 
 const val AMBIENT_TEMP = 25
-const val MAX_HEAT = 300
 const val WARMUP_HEAT = 4
 const val COOLDOWN_RATE = 1
 
 class HeaterBlockEntity(pos: BlockPos, state: BlockState)
     : BlockEntity(ModBlockEntities.HEATER, pos, state), Inventory, ExtendedScreenHandlerFactory<BlockPos>
 {
+    var maxTemp = 300
     var temperature = AMBIENT_TEMP
     private var tickCounter = 0
     val inv: DefaultedList<ItemStack> = DefaultedList.ofSize(1, ItemStack.EMPTY)
@@ -65,7 +66,7 @@ class HeaterBlockEntity(pos: BlockPos, state: BlockState)
         syncId: Int,
         playerInventory: PlayerInventory,
         player: PlayerEntity
-    ) = CrankPressScreenHandler(syncId, playerInventory, this)
+    ) = HeaterScreenHandler(syncId, playerInventory, this)
 
     override fun getScreenOpeningData(p0: ServerPlayerEntity?): BlockPos? {
         return this.pos
