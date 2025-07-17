@@ -150,7 +150,7 @@ class ChemistryTable(settings: Settings): MachineBlock(settings) {
         state: BlockState,
         type: BlockEntityType<T>
     ): BlockEntityTicker<T>? {
-        if(world.isClient || type != ModBlockEntities.HEATER) return null
+        if(world.isClient || type != ModBlockEntities.CHEMISTRY_TABLE) return null
 
         return BlockEntityTicker<T> {
                 tickWorld: World,

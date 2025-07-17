@@ -5,10 +5,14 @@ import com.maddoxh.content.screen.crankpress.CrankPressScreenHandler
 import com.maddoxh.content.screen.heater.HeaterScreenHandler
 import com.maddoxh.registry.ModBlockEntities
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant
+import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleVariantStorage
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
+import net.minecraft.fluid.Fluids
 import net.minecraft.inventory.Inventories
 import net.minecraft.inventory.Inventory
 import net.minecraft.item.Item
@@ -27,15 +31,29 @@ class ChemistryTableBlockEntity(pos: BlockPos, state: BlockState)
 {
     var temperature: Double = 25.0
     val maxTemp: Double = 200.0
+    @Suppress("UnusedPrivateProperty") // will be used later
     private var tickCounter = 0
     val inv: DefaultedList<ItemStack> = DefaultedList.ofSize(3, ItemStack.EMPTY)
+
+    val tank = object : SingleVariantStorage<FluidVariant>() {
+        override fun getBlankVariant() = FluidVariant.blank()
+        override fun getCapacity(variant: FluidVariant): Long = FluidConstants.BUCKET
+    }
 
     val fluidInputSlot = 0
     val itemInputSlot = 1
     val itemOutputSlot = 2
 
     fun serverTick() {
+        val fluidStack = inv[fluidInputSlot]
+        if(fluidStack.item == Items.WATER_BUCKET && tank.amount == 0L) {
+            tank.variant = FluidVariant.of(Fluids.WATER)
+            tank.amount = FluidConstants.BUCKET
+            inv[fluidInputSlot] = ItemStack(Items.BUCKET)
 
+            markDirty()
+            sync()
+        }
     }
 
     private fun sync() {
@@ -78,7 +96,9 @@ class ChemistryTableBlockEntity(pos: BlockPos, state: BlockState)
     override fun writeNbt(nbt: NbtCompound?, registryLookup: RegistryWrapper.WrapperLookup?) {
         super.writeNbt(nbt, registryLookup)
         Inventories.writeNbt(nbt, inv, registryLookup)
+
         nbt?.putDouble("Temp", temperature)
+        SingleVariantStorage.writeNbt(tank, FluidVariant.CODEC, nbt, registryLookup)
     }
 
     override fun readNbt(nbt: NbtCompound?, registryLookup: RegistryWrapper.WrapperLookup?) {
@@ -88,6 +108,7 @@ class ChemistryTableBlockEntity(pos: BlockPos, state: BlockState)
         }
 
         temperature = nbt?.getDouble("Temp") ?: 25.0
+        SingleVariantStorage.readNbt(tank, FluidVariant.CODEC, FluidVariant::blank, nbt, registryLookup)
     }
 
     override fun toUpdatePacket(): BlockEntityUpdateS2CPacket = BlockEntityUpdateS2CPacket.create(this)

@@ -8,6 +8,7 @@ import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
+import net.minecraft.item.Items
 import net.minecraft.screen.ScreenHandler
 import net.minecraft.screen.slot.Slot
 import net.minecraft.util.math.BlockPos
@@ -26,7 +27,10 @@ class ChemistryTableScreenHandler(syncID: Int, playerInventory: PlayerInventory?
     init {
         checkSize(be as Inventory, 3)
         this.inventory = be as Inventory
-        this.addSlot(Slot(inventory, 0, 8, 57))
+        this.addSlot(object : Slot(inventory, 0, 8, 55) {
+            override fun canInsert(stack: ItemStack) = stack.item == Items.WATER_BUCKET || stack.item == Items.BUCKET
+        })
+
         this.addSlot(Slot(inventory, 1, 79, 9))
         this.addSlot(Slot(inventory, 2, 79, 44))
 
