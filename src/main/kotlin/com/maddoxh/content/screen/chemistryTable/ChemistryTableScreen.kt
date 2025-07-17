@@ -79,7 +79,7 @@ class ChemistryTableScreen(handler: ChemistryTableScreenHandler, inventory: Play
             context.drawTooltip(textRenderer, tempRenderer.tooltip(), mouseX, mouseY)
         }
 
-        if (fluidRenderer.isMouseOver(mouseX, mouseY, tankLeft(), tankTop())) {
+        if(fluidRenderer.isMouseOver(mouseX, mouseY, tankLeft(), tankTop())) {
             val tooltip = fluidRenderer.getTooltip(handler.blockEntity.tank)
             context.drawTooltip(textRenderer, tooltip.filterNotNull(), mouseX, mouseY)
         }

@@ -32,7 +32,9 @@ class ChemistryTableScreenHandler(syncID: Int, playerInventory: PlayerInventory?
         })
 
         this.addSlot(Slot(inventory, 1, 79, 9))
-        this.addSlot(Slot(inventory, 2, 79, 44))
+        this.addSlot(object : Slot(inventory, 2, 79, 44) {
+            override fun canInsert(stack: ItemStack) = false
+        })
 
         addPlayerInventory(playerInventory)
         addPlayerHotbar(playerInventory)
