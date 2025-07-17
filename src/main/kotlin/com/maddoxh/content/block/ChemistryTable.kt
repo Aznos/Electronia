@@ -28,19 +28,19 @@ import net.minecraft.world.WorldAccess
 class ChemistryTable(settings: Settings): MachineBlock(settings) {
     private val shapeN  = createCuboidShape(
         0.0, -10.0, 0.0,
-        32.0, 11.0, 16.0)
+        32.0, 1.0, 16.0)
 
     private val shapeS  = createCuboidShape(
         -16.0, -10.0, 0.0,
-        16.0, 11.0, 16.0)
+        16.0, 1.0, 16.0)
 
     private val shapeE  = createCuboidShape(
         0.0, -10.0, 0.0,
-        16.0, 11.0, 32.0)
+        16.0, 1.0, 32.0)
 
     private val shapeW  = createCuboidShape(
         0.0, -10.0, -16.0,
-        16.0, 11.0, 16.0)
+        16.0, 1.0, 16.0)
 
     private val shapeByFacing: Map<Direction, VoxelShape> = mapOf(
         Direction.NORTH to shapeN,
