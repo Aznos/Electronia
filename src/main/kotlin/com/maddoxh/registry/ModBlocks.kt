@@ -1,6 +1,7 @@
 package com.maddoxh.registry
 
 import com.maddoxh.Electronia
+import com.maddoxh.content.block.ChemistryTable
 import com.maddoxh.content.block.CrankPress
 import com.maddoxh.content.block.HandCrankGenerator
 import com.maddoxh.content.block.Heater
@@ -26,6 +27,10 @@ object ModBlocks {
         AbstractBlock.Settings.copy(Blocks.IRON_BLOCK)
     )
 
+    val CHEMISTRY_TABLE = ChemistryTable(
+        AbstractBlock.Settings.copy(Blocks.IRON_BLOCK)
+    )
+
     val LEAD_ORE = Block(
         AbstractBlock.Settings.copy(Blocks.IRON_ORE)
     )
@@ -45,6 +50,7 @@ object ModBlocks {
         registerBlock("hand_crank_generator", HAND_CRANK_GENERATOR)
         registerBlock("crank_press", CRANK_PRESS)
         registerBlock("heater", HEATER)
+        registerBlock("chemistry_table", CHEMISTRY_TABLE)
         registerBlock("lead_ore", LEAD_ORE)
         registerBlock("deepslate_lead_ore", DEEPSLATE_LEAD_ORE)
         registerBlock("sulfur_ore", SULFUR_ORE)

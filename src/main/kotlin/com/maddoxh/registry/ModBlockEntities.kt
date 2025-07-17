@@ -1,6 +1,8 @@
 package com.maddoxh.registry
 
 import com.maddoxh.Electronia
+import com.maddoxh.content.block.ChemistryTable
+import com.maddoxh.content.block.entity.ChemistryTableBlockEntity
 import com.maddoxh.content.block.entity.CrankPressBlockEntity
 import com.maddoxh.content.block.entity.HandCrankGeneratorBlockEntity
 import com.maddoxh.content.block.entity.HeaterBlockEntity
@@ -34,6 +36,13 @@ object ModBlockEntities {
             Registries.BLOCK_ENTITY_TYPE,
             Identifier.of(Electronia.MOD_ID, "heater"),
             BlockEntityType.Builder.create(::HeaterBlockEntity, ModBlocks.HEATER).build()
+        )
+
+    val CHEMISTRY_TABLE: BlockEntityType<ChemistryTableBlockEntity> =
+        Registry.register(
+            Registries.BLOCK_ENTITY_TYPE,
+            Identifier.of(Electronia.MOD_ID, "chemistry_table"),
+            BlockEntityType.Builder.create(::ChemistryTableBlockEntity, ModBlocks.CHEMISTRY_TABLE).build()
         )
 
     fun register() {}

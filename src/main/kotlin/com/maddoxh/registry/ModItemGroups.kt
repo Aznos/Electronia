@@ -26,6 +26,7 @@ object ModItemGroups {
             itemGroup.add(ModBlocks.HAND_CRANK_GENERATOR)
             itemGroup.add(ModBlocks.CRANK_PRESS)
             itemGroup.add(ModBlocks.HEATER)
+            itemGroup.add(ModBlocks.CHEMISTRY_TABLE)
             itemGroup.add(ModItems.CRANK)
             itemGroup.add(ModItems.COPPER_WIRE)
             itemGroup.add(ModItems.LEAD_INGOT)
