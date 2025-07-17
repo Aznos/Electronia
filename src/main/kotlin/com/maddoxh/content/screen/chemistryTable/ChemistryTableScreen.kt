@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier
 class ChemistryTableScreen(handler: ChemistryTableScreenHandler, inventory: PlayerInventory, text: Text)
     : HandledScreen<ChemistryTableScreenHandler>(handler, inventory, text)
 {
-    private val tempX = 106
+    private val tempX = 67
     private val tempY = 67
     private val texture: Identifier = Identifier.of(Electronia.MOD_ID, "textures/gui/chemistry_table/screen.png")
 
@@ -45,6 +45,8 @@ class ChemistryTableScreen(handler: ChemistryTableScreenHandler, inventory: Play
             handler.blockEntity.maxTemp
         ).draw(context)
     }
+
+    override fun drawForeground(context: DrawContext?, mouseX: Int, mouseY: Int) {}
 
     override fun render(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
         renderBackground(context, mouseX, mouseY, delta)

@@ -28,7 +28,7 @@ class ChemistryTableBlockEntity(pos: BlockPos, state: BlockState)
     var temperature: Double = 25.0
     val maxTemp: Double = 200.0
     private var tickCounter = 0
-    val inv: DefaultedList<ItemStack> = DefaultedList.ofSize(1, ItemStack.EMPTY)
+    val inv: DefaultedList<ItemStack> = DefaultedList.ofSize(3, ItemStack.EMPTY)
 
     val fluidInputSlot = 0
     val itemInputSlot = 1
