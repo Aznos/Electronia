@@ -30,6 +30,10 @@ class ChemistryTableBlockEntity(pos: BlockPos, state: BlockState)
     private var tickCounter = 0
     val inv: DefaultedList<ItemStack> = DefaultedList.ofSize(1, ItemStack.EMPTY)
 
+    val fluidInputSlot = 0
+    val itemInputSlot = 1
+    val itemOutputSlot = 2
+
     fun serverTick() {
 
     }

@@ -13,9 +13,9 @@ import net.minecraft.util.Identifier
 class ChemistryTableScreen(handler: ChemistryTableScreenHandler, inventory: PlayerInventory, text: Text)
     : HandledScreen<ChemistryTableScreenHandler>(handler, inventory, text)
 {
-    private val tempX = 58
-    private val tempY = 61
-    private val texture: Identifier = Identifier.of(Electronia.MOD_ID, "textures/gui/heater/screen.png")
+    private val tempX = 106
+    private val tempY = 67
+    private val texture: Identifier = Identifier.of(Electronia.MOD_ID, "textures/gui/chemistry_table/screen.png")
 
     override fun init() {
         super.init()
@@ -39,7 +39,7 @@ class ChemistryTableScreen(handler: ChemistryTableScreenHandler, inventory: Play
 
         context.drawTexture(texture, x, y, 0, 0, backgroundWidth, backgroundHeight)
         TemperatureRenderer(
-            (width - backgroundWidth) /2  + tempX,
+            (width - backgroundWidth) / 2  + tempX,
             (height - backgroundHeight) / 2 + tempY,
             handler.blockEntity.temperature,
             handler.blockEntity.maxTemp

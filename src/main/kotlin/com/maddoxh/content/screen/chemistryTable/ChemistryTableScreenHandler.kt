@@ -24,9 +24,11 @@ class ChemistryTableScreenHandler(syncID: Int, playerInventory: PlayerInventory?
     )
 
     init {
-        checkSize(be as Inventory, 1)
+        checkSize(be as Inventory, 3)
         this.inventory = be as Inventory
-        this.addSlot(Slot(inventory, 0, 80, 35))
+        this.addSlot(Slot(inventory, 0, 8, 57))
+        this.addSlot(Slot(inventory, 1, 79, 9))
+        this.addSlot(Slot(inventory, 2, 79, 44))
 
         addPlayerInventory(playerInventory)
         addPlayerHotbar(playerInventory)
