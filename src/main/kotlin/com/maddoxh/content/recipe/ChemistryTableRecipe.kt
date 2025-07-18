@@ -18,7 +18,9 @@ import net.minecraft.util.collection.DefaultedList
 import net.minecraft.world.World
 import java.util.Optional
 
-data class ChemistryTableRecipe(val ingredient: Ingredient, val result: ItemStack, val fluid: FluidVariant? = null, val fluidReq: Long = 0L) : Recipe<ChemistryTableRecipeInput> {
+data class ChemistryTableRecipe(
+    val ingredient: Ingredient, val result: ItemStack, val fluid: FluidVariant? = null, val fluidReq: Long = 0L
+) : Recipe<ChemistryTableRecipeInput> {
     override fun matches(
         input: ChemistryTableRecipeInput,
         world: World
@@ -53,14 +55,14 @@ data class ChemistryTableRecipe(val ingredient: Ingredient, val result: ItemStac
     }
 
     class Serializer : RecipeSerializer<ChemistryTableRecipe> {
-        private val FLUID = FluidVariant.CODEC.optionalFieldOf("fluid")
-        private val AMOUNT = Codec.LONG.optionalFieldOf("fluid_amount", 0L)
+        private val fluid = FluidVariant.CODEC.optionalFieldOf("fluid")
+        private val amount = Codec.LONG.optionalFieldOf("fluid_amount", 0L)
         @Suppress("UNCHECKED_CAST")
-        private val OPTIONAL_FLUID : PacketCodec<RegistryByteBuf, Optional<FluidVariant>> =
+        private val optionalFluid : PacketCodec<RegistryByteBuf, Optional<FluidVariant>> =
             PacketCodecs.optional(FluidVariant.PACKET_CODEC) as PacketCodec<RegistryByteBuf, Optional<FluidVariant>>
 
         @Suppress("UNCHECKED_CAST")
-        private val VAR_LONG : PacketCodec<RegistryByteBuf, Long> =
+        private val varLong : PacketCodec<RegistryByteBuf, Long> =
             PacketCodecs.VAR_LONG as PacketCodec<RegistryByteBuf, Long>
 
         val codec: MapCodec<ChemistryTableRecipe> =
@@ -70,9 +72,9 @@ data class ChemistryTableRecipe(val ingredient: Ingredient, val result: ItemStac
                         .forGetter(ChemistryTableRecipe::ingredient),
                     ItemStack.CODEC.fieldOf("result")
                         .forGetter(ChemistryTableRecipe::result),
-                    FLUID
+                    fluid
                         .forGetter { r -> Optional.ofNullable(r.fluid) },
-                    AMOUNT.forGetter(ChemistryTableRecipe::fluidReq)
+                    amount.forGetter(ChemistryTableRecipe::fluidReq)
                 ).apply(inst) { ing, res, fluOpt, amt ->
                     ChemistryTableRecipe(ing, res, fluOpt.orElse(null), amt)
                 }
@@ -82,8 +84,8 @@ data class ChemistryTableRecipe(val ingredient: Ingredient, val result: ItemStac
             PacketCodec.tuple(
                 Ingredient.PACKET_CODEC as PacketCodec<RegistryByteBuf, Ingredient>, { it.ingredient },
                 ItemStack.PACKET_CODEC  as PacketCodec<RegistryByteBuf, ItemStack>, { it.result },
-                OPTIONAL_FLUID, { Optional.ofNullable(it.fluid) },
-                VAR_LONG, { it.fluidReq }
+                optionalFluid, { Optional.ofNullable(it.fluid) },
+                varLong, { it.fluidReq }
             ) { ing, res, fluOpt, amt ->
                 ChemistryTableRecipe(ing, res, fluOpt.orElse(null), amt)
             }

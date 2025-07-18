@@ -1,0 +1,11 @@
+{
+  "type": "electronia:chemistry",
+  "ingredient": { "item": "electronia:sulfur_dioxide_bottle" },
+
+  "fluid": {
+    "fluid": "minecraft:water"
+  },
+  "fluid_amount": 27000,
+
+  "result": { "item": "electronia:diluted_acid" }
+}
