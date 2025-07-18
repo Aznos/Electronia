@@ -77,7 +77,7 @@ class ChemistryTableBlockEntity(pos: BlockPos, state: BlockState)
         val inStack = inv[itemInputSlot]
         if(inStack.isEmpty) return
 
-        val recipeInput = ChemistryTableRecipeInput(inv[itemInputSlot], tank.variant, tank.amount)
+        val recipeInput = ChemistryTableRecipeInput(inv[itemInputSlot], tank.variant, tank.amount, temperature)
         val match = s.recipeManager.getFirstMatch(ModRecipes.chemistryTableType, recipeInput, w)
         if(!match.isPresent) return
 

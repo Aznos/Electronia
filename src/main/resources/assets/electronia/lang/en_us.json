@@ -19,6 +19,7 @@
   "itemGroup.electronia": "Electronia",
 
   "jei.electronia.pressing": "Pressing",
+  "jei.electronia.chemistry_table": "Chemistry",
 
   "electronia.tooltip.liquid.amount.with.capacity": "%1$s / %2$smb",
   "electronia.tooltip.liquid.amount": "%smb"
