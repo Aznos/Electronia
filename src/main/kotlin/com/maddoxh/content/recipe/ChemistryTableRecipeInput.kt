@@ -4,7 +4,7 @@ import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant
 import net.minecraft.item.ItemStack
 import net.minecraft.recipe.input.RecipeInput
 
-data class ChemistryTableRecipeInput(val input: ItemStack, val fluid: FluidVariant, val amount: Long) : RecipeInput {
+data class ChemistryTableRecipeInput(val input: ItemStack, val fluid: FluidVariant, val amount: Long, val temperature: Double) : RecipeInput {
     override fun getStackInSlot(slot: Int): ItemStack? {
         return input
     }

@@ -19,7 +19,7 @@ import net.minecraft.world.World
 import java.util.Optional
 
 data class ChemistryTableRecipe(
-    val ingredient: Ingredient, val result: ItemStack, val fluid: FluidVariant? = null, val fluidReq: Long = 0L
+    val ingredient: Ingredient, val result: ItemStack, val fluid: FluidVariant? = null, val fluidReq: Long = 0L, val tempReq: Double = 0.0
 ) : Recipe<ChemistryTableRecipeInput> {
     override fun matches(
         input: ChemistryTableRecipeInput,
@@ -28,7 +28,12 @@ data class ChemistryTableRecipe(
         if(world.isClient) return false
         if(!ingredient.test(input.input)) return false
 
-        return fluid == null || (input.fluid.fluid == fluid.fluid && input.amount >= fluidReq)
+        if (fluid != null &&
+            (input.fluid.isBlank || input.fluid.fluid != fluid.fluid || input.amount < fluidReq)
+        ) return false
+
+        if(tempReq > 0 && input.temperature < tempReq) return false
+        return true
     }
 
     override fun craft(
@@ -57,6 +62,7 @@ data class ChemistryTableRecipe(
     class Serializer : RecipeSerializer<ChemistryTableRecipe> {
         private val fluid = FluidVariant.CODEC.optionalFieldOf("fluid")
         private val amount = Codec.LONG.optionalFieldOf("fluid_amount", 0L)
+        private val temp = Codec.DOUBLE.optionalFieldOf("temperature", 0.0)
         @Suppress("UNCHECKED_CAST")
         private val optionalFluid : PacketCodec<RegistryByteBuf, Optional<FluidVariant>> =
             PacketCodecs.optional(FluidVariant.PACKET_CODEC) as PacketCodec<RegistryByteBuf, Optional<FluidVariant>>
@@ -64,6 +70,10 @@ data class ChemistryTableRecipe(
         @Suppress("UNCHECKED_CAST")
         private val varLong : PacketCodec<RegistryByteBuf, Long> =
             PacketCodecs.VAR_LONG as PacketCodec<RegistryByteBuf, Long>
+
+        @Suppress("UNCHECKED_CAST")
+        private val varDouble : PacketCodec<RegistryByteBuf, Double> =
+            PacketCodecs.DOUBLE as PacketCodec<RegistryByteBuf, Double>
 
         val codec: MapCodec<ChemistryTableRecipe> =
             RecordCodecBuilder.mapCodec { inst ->
@@ -74,9 +84,10 @@ data class ChemistryTableRecipe(
                         .forGetter(ChemistryTableRecipe::result),
                     fluid
                         .forGetter { r -> Optional.ofNullable(r.fluid) },
-                    amount.forGetter(ChemistryTableRecipe::fluidReq)
-                ).apply(inst) { ing, res, fluOpt, amt ->
-                    ChemistryTableRecipe(ing, res, fluOpt.orElse(null), amt)
+                    amount.forGetter(ChemistryTableRecipe::fluidReq),
+                    temp.forGetter(ChemistryTableRecipe::tempReq)
+                ).apply(inst) { ing, res, fluOpt, amt, tmp ->
+                    ChemistryTableRecipe(ing, res, fluOpt.orElse(null), amt, tmp)
                 }
             }
 
@@ -85,9 +96,10 @@ data class ChemistryTableRecipe(
                 Ingredient.PACKET_CODEC as PacketCodec<RegistryByteBuf, Ingredient>, { it.ingredient },
                 ItemStack.PACKET_CODEC  as PacketCodec<RegistryByteBuf, ItemStack>, { it.result },
                 optionalFluid, { Optional.ofNullable(it.fluid) },
-                varLong, { it.fluidReq }
-            ) { ing, res, fluOpt, amt ->
-                ChemistryTableRecipe(ing, res, fluOpt.orElse(null), amt)
+                varLong, { it.fluidReq },
+                varDouble, { it.tempReq }
+            ) { ing, res, fluOpt, amt, tmp ->
+                ChemistryTableRecipe(ing, res, fluOpt.orElse(null), amt, tmp)
             }
 
         override fun codec(): MapCodec<ChemistryTableRecipe> {
