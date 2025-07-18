@@ -1,5 +1,5 @@
 {
-  "type": "electronia:chemistry",
+  "type": "electronia:chemistry_table",
   "ingredient": { "item": "electronia:sulfur_dioxide_bottle" },
 
   "fluid": {
@@ -7,5 +7,5 @@
   },
   "fluid_amount": 27000,
 
-  "result": { "item": "electronia:diluted_acid" }
+  "result": { "id": "electronia:diluted_acid" }
 }

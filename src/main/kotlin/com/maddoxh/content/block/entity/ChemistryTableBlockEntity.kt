@@ -3,8 +3,6 @@ package com.maddoxh.content.block.entity
 import com.maddoxh.content.recipe.ChemistryTableRecipeInput
 import com.maddoxh.content.recipe.PressRecipeInput
 import com.maddoxh.content.screen.chemistryTable.ChemistryTableScreenHandler
-import com.maddoxh.content.screen.crankpress.CrankPressScreenHandler
-import com.maddoxh.content.screen.heater.HeaterScreenHandler
 import com.maddoxh.registry.ModBlockEntities
 import com.maddoxh.registry.ModRecipes
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory
@@ -33,8 +31,6 @@ class ChemistryTableBlockEntity(pos: BlockPos, state: BlockState)
 {
     var temperature: Double = 25.0
     val maxTemp: Double = 200.0
-    @Suppress("UnusedPrivateProperty") // will be used later
-    private var tickCounter = 0
     val inv: DefaultedList<ItemStack> = DefaultedList.ofSize(3, ItemStack.EMPTY)
 
     val tank = object : SingleVariantStorage<FluidVariant>() {
@@ -71,15 +67,20 @@ class ChemistryTableBlockEntity(pos: BlockPos, state: BlockState)
     }
 
     private fun tryCraft() {
-        if(!canCraft()) return
-
         val w = world ?: return
+        if(w.isClient) return
         val s = w.server ?: return
 
-        val recipeInput = ChemistryTableRecipeInput(inv[itemInputSlot], tank.variant, tank.amount)
-        val recipe = s.recipeManager.getFirstMatch(ModRecipes.chemistryTableType, recipeInput, w).get().value()
+        val inStack = inv[itemInputSlot]
+        if(inStack.isEmpty) return
 
-        inv[itemInputSlot].decrement(1)
+        val recipeInput = ChemistryTableRecipeInput(inv[itemInputSlot], tank.variant, tank.amount)
+        val match = s.recipeManager.getFirstMatch(ModRecipes.chemistryTableType, recipeInput, w)
+        if(!match.isPresent) return
+
+        val recipe = match.get().value()
+
+        inStack.decrement(1)
         if(recipe.fluid != null && recipe.fluidReq > 0) tank.amount -= recipe.fluidReq
 
         val out = inv[itemOutputSlot]
@@ -91,34 +92,6 @@ class ChemistryTableBlockEntity(pos: BlockPos, state: BlockState)
 
         markDirty()
         sync()
-    }
-
-    private fun canCraft(): Boolean {
-        val w = world ?: return false
-        if(w.isClient) return false
-
-        val inputStack = inv[itemInputSlot]
-        if(inputStack.isEmpty) return false
-
-        val recipeInput = ChemistryTableRecipeInput(inputStack, tank.variant, tank.amount)
-        val match = w.server?.recipeManager?.getFirstMatch(ModRecipes.chemistryTableType, recipeInput, w)
-            ?: return false
-        if(!match.isPresent) return false
-
-        val recipe = match.get().value()
-        if(recipe.fluid != null) {
-            if(tank.variant.isBlank) return false
-            if(tank.variant.fluid != recipe.fluid.fluid) return false
-            if(tank.amount < recipe.fluidReq) return false
-        }
-
-        val res = recipe.result
-        val outStack = inv[itemOutputSlot]
-
-        if(outStack.isEmpty) return true
-        if(!outStack.isStackable || !ItemStack.areItemsEqual(outStack, res)) return false
-
-        return outStack.count + res.count <= outStack.maxCount
     }
 
     override fun size() = inv.size
