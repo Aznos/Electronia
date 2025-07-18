@@ -29,6 +29,7 @@ import net.minecraft.util.math.BlockPos
 class ChemistryTableBlockEntity(pos: BlockPos, state: BlockState)
     : BlockEntity(ModBlockEntities.CHEMISTRY_TABLE, pos, state), Inventory, ExtendedScreenHandlerFactory<BlockPos>
 {
+    var heatTransferRate = 2.0
     var temperature: Double = 25.0
     val maxTemp: Double = 200.0
     val inv: DefaultedList<ItemStack> = DefaultedList.ofSize(3, ItemStack.EMPTY)
@@ -43,6 +44,8 @@ class ChemistryTableBlockEntity(pos: BlockPos, state: BlockState)
     val itemOutputSlot = 2
 
     fun serverTick() {
+        transferHeat()
+
         val fluidStack = inv[fluidInputSlot]
         if(fluidStack.item == Items.WATER_BUCKET && tank.amount == 0L) {
             tank.variant = FluidVariant.of(Fluids.WATER)
@@ -92,6 +95,25 @@ class ChemistryTableBlockEntity(pos: BlockPos, state: BlockState)
 
         markDirty()
         sync()
+    }
+
+    private fun transferHeat() {
+        val w = world ?: return
+        val heater = w.getBlockEntity(pos.down()) as? HeaterBlockEntity ?: return
+
+        val diff = heater.temperature - temperature
+        if(diff <= 0) return
+
+        val moved = diff.coerceAtMost(heatTransferRate)
+        temperature += moved
+        heater.temperature -= moved
+
+        markDirty()
+        heater.markDirty()
+        if(!w.isClient) {
+            sync()
+            heater.sync()
+        }
     }
 
     override fun size() = inv.size

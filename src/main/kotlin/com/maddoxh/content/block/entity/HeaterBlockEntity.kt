@@ -43,7 +43,7 @@ class HeaterBlockEntity(pos: BlockPos, state: BlockState)
         if(temperature != old) sync()
     }
 
-    private fun sync() {
+    fun sync() {
         world?.let { w ->
             val pkt = BlockEntityUpdateS2CPacket.create(this)
             w.server?.playerManager?.playerList
