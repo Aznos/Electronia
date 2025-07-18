@@ -23,5 +23,6 @@ class ModModelProvider(output: FabricDataOutput) : FabricModelProvider(output) {
         generator.register(ModItems.SULFUR_DUST, Models.GENERATED)
         generator.register(ModItems.LEAD_PLATE, Models.GENERATED)
         generator.register(ModItems.SULFUR_DIOXIDE_BOTTLE, Models.GENERATED)
+        generator.register(ModItems.DILUTED_ACID, Models.GENERATED)
     }
 }
