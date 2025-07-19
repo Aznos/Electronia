@@ -5,6 +5,8 @@ import com.maddoxh.content.recipe.ChemistryTableRecipe
 import com.maddoxh.content.recipe.PressRecipe
 import com.maddoxh.registry.ModBlocks
 import mezz.jei.api.constants.VanillaTypes
+import mezz.jei.api.fabric.constants.FabricTypes
+import mezz.jei.api.fabric.ingredients.fluids.JeiFluidIngredient
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder
 import mezz.jei.api.gui.drawable.IDrawable
 import mezz.jei.api.gui.ingredient.IRecipeSlotTooltipCallback
@@ -25,23 +27,20 @@ import kotlin.math.roundToInt
 
 class ChemistryTableCategory(private val gui: IGuiHelper) : IRecipeCategory<ChemistryTableRecipe> {
     companion object {
-        private val tex = Identifier.of(Electronia.MOD_ID, "textures/gui/chemistry_table/screen.png")
-        private val bgW = 132
-        private val bgH = 54
+        private val tex = Identifier.of(Electronia.MOD_ID, "textures/gui/jei/chemistry_table.png")
+        private val bgW = 138
+        private val bgH = 60
 
         private val itemX = 76
         private val itemY = 6
 
         private val fluidX = 42
         private val fluidY = 10
-        private val fluidW = 16
+        private val fluidW = 14
         private val fluidH = 48
 
         private val outX = 76
         private val outY = 41
-
-        private val thermX = 103
-        private val thermY = 50
     }
 
     private val background: IDrawable = gui.drawableBuilder(tex, 0, 0, bgW, bgH).setTextureSize(256, 256).build()
@@ -57,11 +56,12 @@ class ChemistryTableCategory(private val gui: IGuiHelper) : IRecipeCategory<Chem
             .addIngredients(recipe.ingredient)
 
         if(recipe.fluid != null && recipe.fluidReq > 0) {
-            val mb = dropletsToMB(recipe.fluidReq)
+            val mb = dropletsToMB(recipe.fluidReq).toLong()
+            val jeiFluid = JeiFluidIngredient(FluidVariant.of(recipe.fluid.fluid), mb)
 
             layout.addSlot(RecipeIngredientRole.INPUT, fluidX, fluidY)
                 .setFluidRenderer(mb.toLong(), false, fluidW, fluidH)
-                .addIngredients(VanillaTypes.ITEM_STACK, listOf(ItemStack(recipe.fluid.fluid.bucketItem)))
+                .addIngredients(FabricTypes.FLUID_STACK, listOf(jeiFluid))
                 .addTooltipCallback(fluidTooltip(recipe))
 
             layout.addSlot(RecipeIngredientRole.OUTPUT, outX, outY)
@@ -83,7 +83,7 @@ class ChemistryTableCategory(private val gui: IGuiHelper) : IRecipeCategory<Chem
     private fun fluidTooltip(recipe: ChemistryTableRecipe) = IRecipeSlotTooltipCallback { _, tooltip ->
         val req = recipe.fluidReq
         val mb = dropletsToMB(req)
-        tooltip.add(Text.translatable("electronia.tooltip.liquid.amount.with.capacity", mb, "mB"))
+        tooltip.add(Text.translatable("electronia.tooltip.liquid.amount.with.capacity", mb, "1000"))
         tooltip.add(Text.literal("$req droplets"))
         if(recipe.tempReq > 0) {
             tooltip.add(Text.literal("Needs ≥${recipe.tempReq}°C").formatted(Formatting.RED))
