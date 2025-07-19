@@ -14,6 +14,7 @@ object ModItems {
     val SULFUR_DUST = Item(Item.Settings())
     val SULFUR_DIOXIDE_BOTTLE = Item(Item.Settings())
     val DILUTED_ACID = Item(Item.Settings())
+    val LEAD_ACID_BATTERY = Item(Item.Settings())
 
     fun register() {
         registerItem("crank", CRANK)
@@ -23,6 +24,7 @@ object ModItems {
         registerItem("sulfur_dust", SULFUR_DUST)
         registerItem("sulfur_dioxide_bottle", SULFUR_DIOXIDE_BOTTLE)
         registerItem("diluted_acid", DILUTED_ACID)
+        registerItem("lead_acid_battery", LEAD_ACID_BATTERY)
     }
 
     private fun registerItem(name: String, item: Item) {

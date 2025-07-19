@@ -38,6 +38,7 @@ object ModItemGroups {
             itemGroup.add(ModItems.LEAD_PLATE)
             itemGroup.add(ModItems.SULFUR_DIOXIDE_BOTTLE)
             itemGroup.add(ModItems.DILUTED_ACID)
+            itemGroup.add(ModItems.LEAD_ACID_BATTERY)
         }
     }
 }
