@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider
 import net.minecraft.block.Blocks
 import net.minecraft.data.server.recipe.RecipeExporter
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder
+import net.minecraft.item.Items
 import net.minecraft.recipe.book.RecipeCategory
 import net.minecraft.registry.RegistryWrapper
 import java.util.concurrent.CompletableFuture
@@ -52,6 +53,30 @@ class ModRecipeGenerator(output: FabricDataOutput, registriesFuture: Completable
             .criterion("has_oak_planks", conditionsFromItem(Blocks.OAK_PLANKS))
             .criterion("has_crank", conditionsFromItem(ModItems.CRANK))
             .criterion("has_copper_wire", conditionsFromItem(ModItems.COPPER_WIRE))
+            .offerTo(exporter)
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.HAND_CRANK_GENERATOR)
+            .pattern("III")
+            .pattern("S S")
+            .pattern("SSS")
+            .input('I', Items.IRON_INGOT)
+            .input('S', Blocks.STONE)
+            .criterion("has_iron_ingot", conditionsFromItem(Items.IRON_INGOT))
+            .criterion("has_stone", conditionsFromItem(Blocks.STONE))
+            .offerTo(exporter)
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.CHEMISTRY_TABLE)
+            .pattern("G G")
+            .pattern("WWW")
+            .pattern("SIS")
+            .input('G', Blocks.GLASS)
+            .input('W', Blocks.OAK_PLANKS)
+            .input('S', Blocks.STONE)
+            .input('I', Items.IRON_INGOT)
+            .criterion("has_glass", conditionsFromItem(Blocks.GLASS))
+            .criterion("has_oak_planks", conditionsFromItem(Blocks.OAK_PLANKS))
+            .criterion("has_stone", conditionsFromItem(Blocks.STONE))
+            .criterion("has_iron_ingot", conditionsFromItem(Items.IRON_INGOT))
             .offerTo(exporter)
 
         offerSmelting(
