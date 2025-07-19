@@ -79,6 +79,18 @@ class ModRecipeGenerator(output: FabricDataOutput, registriesFuture: Completable
             .criterion("has_iron_ingot", conditionsFromItem(Items.IRON_INGOT))
             .offerTo(exporter)
 
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.LEAD_ACID_BATTERY)
+            .pattern("LCL")
+            .pattern("LDL")
+            .pattern("LCL")
+            .input('L', ModItems.LEAD_PLATE)
+            .input('C', ModItems.COPPER_WIRE)
+            .input('D', ModItems.DILUTED_ACID)
+            .criterion("has_lead_plate", conditionsFromItem(ModItems.LEAD_PLATE))
+            .criterion("has_copper_wire", conditionsFromItem(ModItems.COPPER_WIRE))
+            .criterion("has_diluted_acid", conditionsFromItem(ModItems.DILUTED_ACID))
+            .offerTo(exporter)
+
         offerSmelting(
             exporter,
             listOf(ModBlocks.LEAD_ORE, ModBlocks.DEEPSLATE_LEAD_ORE),
